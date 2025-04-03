@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const generateToken = require("../utils/generateToken");
 const crypto = require("crypto");
 const { sendEmailHtml } = require("../utils/services/emailService");
+const Group = require("../models/Group");
 
 const registerController = async (req, res) => {
   const session = await mongoose.startSession();
@@ -37,7 +38,17 @@ const registerController = async (req, res) => {
       password: hashedPassword,
     });
 
+    
     await newUser.save({ session });
+
+    // create a group named 'Personal' for the user
+    const group = new Group({
+      name: "Personal",
+      members: [newUser._id],
+      description: "Personal group for individual transactions",
+    });
+
+    await group.save({ session });
 
     await session.commitTransaction();
     session.endSession();
@@ -84,11 +95,28 @@ const loginController = async (req, res) => {
 
     const token = await generateToken(existingUser);
 
+    const personalGroup = await Group.findOne({
+      name: "Personal",
+      members: existingUser._id,
+    }).session(session);
+    if (!personalGroup) {
+      const newGroup = new Group({
+        name: "Personal",
+        members: [existingUser._id],
+        description: "Personal group for individual transactions",
+      });
+
+      await newGroup.save({ session });
+    };
+
+
     const user = {
       name: existingUser.name,
       id: existingUser.id,
       email: existingUser.email,
       role: existingUser.role,
+      phoneNo: existingUser.phoneNo,
+      groupId: personalGroup ? personalGroup._id : null,
       token,
     };
 

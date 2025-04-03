@@ -14,10 +14,10 @@ const groupSchema = new mongoose.Schema(
         required: true,
       },
     ],
-    expenses: [
+    splits: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Expense",
+        ref: "Split",
       },
     ],
     description: {
