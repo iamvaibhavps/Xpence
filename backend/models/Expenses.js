@@ -30,10 +30,6 @@ const expenseSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
-    group: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Group",
-    },
   },
   {
     timestamps: true,

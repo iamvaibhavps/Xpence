@@ -14,11 +14,8 @@ const groupSchema = new mongoose.Schema(
         required: true,
       },
     ],
-    expenses: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Expense",
-      },
+    splits:[
+        // array of object contaning splits7
     ],
     description: {
       type: String,

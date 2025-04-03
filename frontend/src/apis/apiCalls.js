@@ -17,3 +17,15 @@ export const forgotPassword = async (userData) => {
 export const resetPassword = async (data) => {
   return await api.post("/auth/reset-password", data);
 };
+
+// ----------------------- NOTIFICATION APIS ------------------------- //
+
+export const getAllNotifications = async () => {
+  const response = await api.get("/notifications/all");
+  return response;
+};
+
+export const readNotification = async (notificationId) => {
+  const response = await api.put(`/notifications/${notificationId}/read`);
+  return response;
+};
