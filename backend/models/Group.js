@@ -14,8 +14,11 @@ const groupSchema = new mongoose.Schema(
         required: true,
       },
     ],
-    splits:[
-        // array of object contaning splits7
+    splits: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Split",
+      },
     ],
     description: {
       type: String,

@@ -1,10 +1,15 @@
 const mongoose = require("mongoose");
 
-const expenseSchema = new mongoose.Schema(
+const transactionSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+      required: true,
+    },
+    paymentType: {
+      type: String,
+      enum: ["credit", "debit"],
       required: true,
     },
     title: {
@@ -16,8 +21,8 @@ const expenseSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    unit:{
-        type: String,
+    unit: {
+      type: String,
     },
     category: {
       type: String,
@@ -36,6 +41,6 @@ const expenseSchema = new mongoose.Schema(
   }
 );
 
-const Expense = mongoose.model("Expense", expenseSchema);
+const Expense = mongoose.model("Transaction", transactionSchema);
 
 module.exports = Expense;

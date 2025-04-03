@@ -200,7 +200,6 @@ export default function NavbarList({ title }) {
     };
 
 
-
     const handleCloseModalExpense = () => {
         setIsTaskModelOpen(false);
         dispatch(closeModal());
@@ -247,9 +246,9 @@ export default function NavbarList({ title }) {
     return (
         <div className="pr-[15px] md:pl-[15px] md:pr-[25px] flex items-center shadow-2xl md:shadow-none py-3 ">
             <div className="flex items-center justify-between w-full py-1 relative ">
-                {/* Title Section */}
+
                 <h1 className="text-[18px] md:text-2xl lg:text-3xl font-bold truncate flex-shrink min-w-0 max-w-[150px] md:max-w-[200px] lg:max-w-[300px]
-                ">
+                                ">
                     {title}
                 </h1>
 
@@ -328,7 +327,8 @@ export default function NavbarList({ title }) {
                                                     // onChange={handleSearch}
                                                     onClick={() => setShowResults(true)}
                                                 />
-                                                <img src={Search} alt="search" className='absolute top-1/2 right-3 transform -translate-y-1/2 w-5 h-5 text-dark' />
+                                                {/* <img src={Search} alt="search" /> */}
+                                                <Search className='absolute top-1/2 right-3 transform -translate-y-1/2 w-5 h-5 text-dark' />
                                             </div>
 
                                         </>
