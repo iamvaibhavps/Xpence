@@ -18,8 +18,8 @@ import homePageDes from "../assets/homepage/homee.jpg";
 import withBeenium from "../assets/homepage/with_beenium.png";
 import withoutBeenium from "../assets/homepage/without_beenium.png";
 import Chatbot from "./Chatbot";
-
-
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function HomePage() {
     const currentUser = useSelector((state) => state.user.user);
