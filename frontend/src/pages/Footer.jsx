@@ -75,7 +75,7 @@ const Footer = () => {
                 {/* Newsletter Section */}
                 <div className="flex flex-col gap-3 col-span-2 sm:col-span-4 md:col-span-1 mt-8 sm:mt-8 md:mt-0 lg:-ml-10">
                     <div className="text-[20px] md:text-[25px] lg:text-[36px] font-bold mb-4 text-center md:text-left">
-                        Buzz with Beenium
+                        Buzz with Xpence
                     </div>
                     <div>
                         <div className="flex flex-col md:flex-row items-center justify-between gap-2">
@@ -98,7 +98,7 @@ const Footer = () => {
                                 htmlFor="newsletter"
                                 className="text-[14px] md:text-[17px]"
                             >
-                                I agree to receive Beenium{" "}
+                                I agree to receive Xpence{" "}
                                 <br className="hidden md:block lg:hidden" /> newsletter
                                 <br className="hidden lg:block" /> and marketing{" "}
                                 <br className="hidden md:block lg:hidden" /> emails.
@@ -121,7 +121,7 @@ const Footer = () => {
                 </div>
                 <div>
                     <p className="font-bold text-[40px] md:text-[150px] lg:text-[250px] pl-4 md:pl-[65px] lg:pl-[100px]">
-                        Beenium
+                        Xpence
                     </p>
                 </div>
             </div>

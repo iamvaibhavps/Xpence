@@ -14,10 +14,11 @@ import underline1 from "../assets/svglines/underline1.svg"
 import underline2 from "../assets/svglines/underline2.svg"
 import underline3 from "../assets/svglines/underline3.png"
 
-import homePageDes from "../assets/homepage/HomePage_Des.jpg";
+import homePageDes from "../assets/homepage/homee.jpg";
 import withBeenium from "../assets/homepage/with_beenium.png";
 import withoutBeenium from "../assets/homepage/without_beenium.png";
-import SplashCursor from "../components/SplashCursor";
+import Chatbot from "./Chatbot";
+
 
 
 export default function HomePage() {
@@ -45,6 +46,7 @@ export default function HomePage() {
 
     return (
         <div className=" w-full min-h-screen bg-white px-1 overflow-y-auto  ">
+            <Chatbot />
             {/* Header */}
             {/* <Header /> */}
             
@@ -64,7 +66,7 @@ export default function HomePage() {
                                         className="absolute left-0 bottom-[2px] w-full"
                                     />
                                 </span>
-                                Work
+                                Expenses
                             </span>
                         </p>
                         <p className="font-poppins text-dark text-[28px] md:text-[70px] -mt-4 md:-mt-8  tracking-tight">
@@ -72,7 +74,7 @@ export default function HomePage() {
                                 Amplify
                                 {/* Container for "Simplify" with overlapping underline */}
                                 <span className="relative inline-block">
-                                    Performance
+                                    Savings
                                     <img
                                         src={underline2}
                                         alt="underline2"
@@ -83,7 +85,7 @@ export default function HomePage() {
                         </p>
                     </h1>
                     <p className="md:text-xl text-dark text-center">
-                        Beenium is a simple tool to assign, track <br className="block md:hidden" />and get things done!
+                    Xpence is a simple tool to track expenses, manage budgets, <br className="block md:hidden" />and effortlessly split costs! 
                     </p>
                     {/* <div className="mt-14 mb-4">
                         <button
@@ -139,74 +141,68 @@ export default function HomePage() {
                 </div> */}
             </div>
 
-            {/* Beenium Work section */}
-            <div className="container mx-auto w-full flex flex-col justify-center items-center gap-20 px-10 lg:px-0">
-                <div className="relative lg:container w-full flex items-center justify-center text-dark text-[19px] md:text-[45px] mt-10 font-sans">
-                    How Beenium Works?
-                    <img src={underline3} alt="underline1" className="absolute left-100 bottom-[-5px] w-[55%] md:w-[45%] lg:w-[30%]" />
-                </div>
+            {/* Xpence Works Section */}
+<div className="container mx-auto w-full flex flex-col justify-center items-center gap-20 px-10 lg:px-0">
+    <div className="relative lg:container w-full flex items-center justify-center text-dark text-[19px] md:text-[45px] mt-10 font-sans">
+        How Xpence Works?
+        <img src={underline3} alt="underline1" className="absolute left-100 bottom-[-5px] w-[55%] md:w-[45%] lg:w-[30%]" />
+    </div>
 
-                {/* Cards Container */}
-                <div className="flex flex-col gap-10 md:gap-20 w-full max-w-6xl">
-                    {/* Assign Card */}
-                    <div className="flex flex-col gap-10 md:flex-row items-center border border-gray-300 rounded-[30px] bg-gray-50 px-10 py-6 lg:py-0 md:min-h-[350px]">
-                        <div className="flex-1 flex flex-col items-center md:items-start h-full justify-between">
-                            <p className="md:text-[25px] font-semibold">1 - Assign</p>
-                            <p className="md:text-[33px] font-semibold mt-2 mb-2">Click. Sent. Sorted.</p>
-                            <ul className="md:text-[19px] text-gray-700 space-y-2">
-                                <li>Assign tasks & goals in clicks & set deadlines.</li>
-                                <li>Boom! Instant WhatsApp alerts so no one misses out.</li>
-                                <li>Add files, notes, or voice memos.</li>
-                            </ul>
-                        </div>
-                        <div className="flex-1 flex justify-center">
-                            <img src={assignImg} alt="assign" className="w-[400px] lg:h-[350px] object-cover" />
-                        </div>
-                    </div>
+    {/* Cards Container */}
+    <div className="flex flex-col gap-10 md:gap-20 w-full max-w-6xl">
+        {/* Assign Card */}
+        <div className="flex flex-col gap-10 md:flex-row items-center border border-gray-300 rounded-[30px] bg-gray-50 px-10 py-6 lg:py-0 md:min-h-[350px]">
+            <div className="flex-1 flex flex-col items-center md:items-start h-full justify-between">
+                <p className="md:text-[25px] font-semibold">1 - Account & Expense Setup</p>
+                <p className="md:text-[33px] font-semibold mt-2 mb-2">Create, Assign, & Categorize Expenses</p>
+                <ul className="md:text-[19px] text-gray-700 space-y-2">
+                    <li>Set up user profiles based on user type (Student/Professional).</li>
+                    <li>Assign and categorize expenses with custom categories (e.g., food, rent, shopping).</li>
+                    <li>Assign goals and tasks, set deadlines with notifications and reminders.</li>
+                </ul>
+            </div>
+            <div className="flex-1 flex justify-center">
+                <img src={assignImg} alt="assign" className="w-[400px] lg:h-[350px] object-cover" />
+            </div>
+        </div>
 
-                    {/* Track Card - Image first on medium+ screens, text first on mobile */}
-                    <div className="flex flex-col gap-10ste md:gap-40 md:flex-row-reverse items-center border border-gray-300 rounded-[30px] bg-gray-50 px-10 py-6 lg:py-0 md:min-h-[350px]">
-                        {/* Image div - Hidden on mobile, shown first on md screens */}
-                        {/* <div className="hidden md:flex flex-1 justify-center order-1">
-                            <img src={trackImg} alt="track" className="w-[400px] lg:h-[350px] object-cover" />
-                        </div> */}
-
-                        {/* Text div */}
-                        <div className="flex-1 flex flex-col items-center md:items-start h-full justify-between order-2">
-                            <p className="md:text-[25px] font-semibold">2 - Track</p>
-                            <p className="md:text-[33px] font-semibold mt-2 mb-2">Get real-time updates.</p>
-                            <ul className="md:text-[19px] text-gray-700 space-y-2">
-                                <li>In-app chat to discuss tasks and goals instantly.</li>
-                                <li>WhatsApp reminders to keep things on track.</li>
-                                <li>Get notified when it's done. No follow-ups needed.</li>
-                            </ul>
-                        </div>
-
-                        {/* Mobile-only image div - Shown on mobile below text */}
-                        <div className="flex  flex-1 justify-center order-3">
-                            <img src={trackImg} alt="track" className="w-[400px] object-cover" />
-                        </div>
-                    </div>
-
-                    {/* Measure Card */}
-                    <div className="flex flex-col gap-10 md:flex-row items-center border border-gray-300 rounded-[30px] bg-gray-50 px-10 py-6 lg:py-0 md:min-h-[350px]">
-                        <div className="flex-1 flex flex-col items-center md:items-start h-full justify-between">
-                            <p className="md:text-[25px] font-semibold">3 - Measure</p>
-                            <p className="md:text-[33px] font-semibold mt-2 mb-2">Track Wins. Spot Gaps.</p>
-                            <ul className="md:text-[19px] text-gray-700 space-y-2">
-                                <li>Track individual, team or overall performance.</li>
-                                <li>Points system to measure productivity effortlessly.</li>
-                                <li>Auto-generated performance reports, zero manual effort.</li>
-                                <li>Know your top and bottom performers.</li>
-                            </ul>
-                        </div>
-                        <div className="flex-1 flex justify-center">
-                            <img src={measureImg} alt="measure" className="w-[400px] lg:h-[350px] object-cover" />
-                        </div>
-                    </div>
-                </div>
+        {/* Track Card */}
+        <div className="flex flex-col gap-10 md:gap-40 md:flex-row-reverse items-center border border-gray-300 rounded-[30px] bg-gray-50 px-10 py-6 lg:py-0 md:min-h-[350px]">
+            {/* Text div */}
+            <div className="flex-1 flex flex-col items-center md:items-start h-full justify-between order-2">
+                <p className="md:text-[25px] font-semibold">2 - Track & Manage</p>
+                <p className="md:text-[33px] font-semibold mt-2 mb-2">Real-time Updates & Notifications</p>
+                <ul className="md:text-[19px] text-gray-700 space-y-2">
+                    <li>Track personal and group expenses, share real-time updates.</li>
+                    <li>Receive instant notifications for any group contributions and overdue payments.</li>
+                    <li>Get notified when budgets are overspent or nearing the limit.</li>
+                </ul>
             </div>
 
+            {/* Mobile-only image div */}
+            <div className="flex flex-1 justify-center order-3">
+                <img src={trackImg} alt="track" className="w-[400px] object-cover" />
+            </div>
+        </div>
+
+        {/* Measure Card */}
+        <div className="flex flex-col gap-10 md:flex-row items-center border border-gray-300 rounded-[30px] bg-gray-50 px-10 py-6 lg:py-0 md:min-h-[350px]">
+            <div className="flex-1 flex flex-col items-center md:items-start h-full justify-between">
+                <p className="md:text-[25px] font-semibold">3 - Budget Adjustment</p>
+                <p className="md:text-[33px] font-semibold mt-2 mb-2">Insights, Savings & Auto-Budgeting</p>
+                <ul className="md:text-[19px] text-gray-700 space-y-2">
+                    <li>Analyze past expenses and adjust budgets based on real-time spending.</li>
+                    <li>Set up custom savings goals, and automatically move small change to savings.</li>
+                    <li>Use predictive analytics to forecast future spending and make adjustments to stay on track.</li>
+                    <li>Receive insights to manage recurring expenses like subscriptions or medical funds.</li>
+                </ul>
+            </div>
+            <div className="flex-1 flex justify-center">
+                <img src={measureImg} alt="measure" className="w-[400px] lg:h-[350px] object-cover" />
+            </div>
+        </div>
+    </div>
+</div>
 
 
             {/* Core */}
@@ -266,7 +262,7 @@ export default function HomePage() {
                         <div className="p-6 md:p-10 flex flex-col gap-6 border-r md:border-r border-gray-800">
                             <h2 className="font-poppins text-[28px] md:text-[40px] leading-[1.4] border-b pb-3 border-gray-800">
                                 <span className="flex items-center gap-2 relative">
-                                    CEO
+                                    
                                     {/* Container for "Simplify" with overlapping underline */}
                                     <span className="relative inline-block">
                                         Nightmares
@@ -277,7 +273,7 @@ export default function HomePage() {
                                         />
                                     </span>
                                 </span>
-                                without Beenium
+                                without Xpence
                             </h2>
                             <div className="space-y-6">
                                 {[
@@ -311,7 +307,7 @@ export default function HomePage() {
                         <div className="p-6 md:p-10 flex flex-col gap-6 bg-white">
                             <h2 className="font-poppins text-[28px] md:text-[40px] leading-[1.4] border-b pb-3 border-gray-800">
                                 <span className="flex items-center gap-2 relative">
-                                    CEO
+                                  
                                     {/* Container for "Simplify" with overlapping underline */}
                                     <span className="relative inline-block">
                                         Superpowers
@@ -322,7 +318,7 @@ export default function HomePage() {
                                         />
                                     </span>
                                 </span>
-                                with Beenium
+                                with Xpence
                             </h2>
                             <div className="space-y-6">
                                 {[
@@ -330,9 +326,8 @@ export default function HomePage() {
     "Users set financial goals and AI helps allocate funds accordingly.",
     "Detect fraud transactions by using clustering algorithm.",
     "Auto-splits expenses, reminds members, and ensures timely repayments.",
-    "Small change from transactions is automatically moved to savings.",
     "Notifies users when they are overspending in a category.",
-    "Suggests how much to set aside for medical expenses and unexpected costs."
+    
 ]
 .map((item, index) => (
                                     <div
@@ -356,26 +351,26 @@ export default function HomePage() {
                 </div>
             </div>
 
-            <div className="mt-16 text-center mb-14">
-                <div className="flex flex-col items-center gap-3">
-                    <h1 className="flex flex-col items-center space-y-2">
-                        <p className="font-poppins font-bold text-dark text-[40px]  md:text-[70px] tracking-tight">
-                            No more follow<span className="font-poppins">-</span>up stress<span className="font-poppins">.</span>
-                        </p>
-                        <p className="font-poppins text-gray-500 text-[18px]  md:text-[28px] tracking-tight">
-                            Join thousands of satisfied users & experience the power of Beenium today.
-                        </p>
-                    </h1>
-                    <div className="flex items-center gap-5 mt-4">
-                        <button className="bg-dark px-5 md:px-10 py-2 md:text-[19px] text-white rounded-full hover:bg-gray-900">
-                            <Link to={`${currentUser ? "/" : "/auth/sign-up"}`}>Get started free</Link>
-                        </button>
-                        <button className="bg-dark px-5  md:px-10 py-2 md:text-[19px] text-white rounded-full hover:bg-gray-900">
-                            <Link to={"/contact-sales"}>Request a demo</Link>
-                        </button>
-                    </div>
-                </div>
-            </div>
+          <div className="mt-16 text-center mb-14">
+    <div className="flex flex-col items-center gap-3">
+        <h1 className="flex flex-col items-center space-y-2">
+            <p className="font-poppins font-bold text-dark text-[40px]  md:text-[70px] tracking-tight">
+                No more budgeting<span className="font-poppins">-</span> stress<span className="font-poppins">.</span>
+            </p>
+            <p className="font-poppins text-gray-500 text-[18px]  md:text-[28px] tracking-tight">
+                Join thousands of users and simplify your finances with Xpence today.
+            </p>
+        </h1>
+        <div className="flex items-center gap-5 mt-4">
+            <button className="bg-dark px-5 md:px-10 py-2 md:text-[19px] text-black rounded-full hover:bg-gray-400">
+                <Link to={`${currentUser ? "/" : "/auth/sign-up"}`}>Get started free</Link>
+            </button>
+            <button className="bg-dark px-5  md:px-10 py-2 md:text-[19px] text-black rounded-full hover:bg-gray-400">
+                <Link to={"/contact-sales"}>Request a demo</Link>
+            </button>
+        </div>
+    </div>
+</div>
 
             {/* Footer */}
             <Footer />
