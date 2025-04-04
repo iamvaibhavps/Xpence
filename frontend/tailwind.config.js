@@ -5,6 +5,17 @@ module.exports = withMT({
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      colors: {
+        white: "#ffffff",
+        lightBlue: "#f4f5fe",
+        grey: "#7e7e7e",
+        lightGrey: "#f5f5f5",
+        orange: "#ef7c1a",
+        dark: "#000000",
+      },
+      textColor: {
+        DEFAULT: "#000000", 
+      },
       screens: {
         sm: "640px",
         md: "800px",

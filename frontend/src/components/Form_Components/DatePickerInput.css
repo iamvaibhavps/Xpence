@@ -1,0 +1,66 @@
+/* Change the input's border and focus outline to black */
+#custom-datetimepicker input:focus {
+  border-color: transparent;
+}
+
+/* Change the selected date background to black */
+.rainbow-calendar_day--selected {
+  background-color: transparent;
+}
+
+/* DatePickerInput.css */
+.custom-datetimepicker {
+  --rainbow-button-brand-bg: #000000; /* Black background for the button */
+  --rainbow-button-brand-text: #ffffff; /* White text for the button */
+  --rainbow-button-border-color: #000000; /* Black border for the button */
+}
+
+/* Optionally, style the text for the disabled state */
+.custom-datetimepicker.disabled {
+  color: gray; /* Change the color for the disabled state */
+  cursor: not-allowed;
+}
+
+#custom-datetimepicker #input-32 {
+  height: 50px; /* Set your desired height */
+  font-size: 16px; /* Adjust font size for better readability */
+  border-radius: 12px; /* Optional: Adjust border radius */
+  border: 1px solid #727070; /* Set border color */
+  outline-style: none;
+}
+
+#modal-content-10 header h2 {
+  color: #000000;
+}
+/* 
+  #modal-content-10 article input {
+    border: #000000;
+    color: ;
+  }
+  
+  #modal-content-10 article input:focus {
+    background-color: #333333; 
+  } */
+/* #modal-content-10 article fieldset:focus {
+    color: #fff;
+    background-color: #000000;
+  } */
+
+/* #modal-content-10 article fieldset:hover {
+    background-color: #000000;
+  } */
+
+#modal-content-10 article button svg {
+  color: #000000;
+}
+
+/* #time-picker_cancel-button {
+    color: #000000;
+    border: 1px solid #000000;
+  }
+  
+  #time-picker_ok-button {
+    background-color: #000000;
+    color: white;
+    border: none;
+  } */
