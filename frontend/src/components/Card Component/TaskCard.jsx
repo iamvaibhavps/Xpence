@@ -28,11 +28,11 @@ const TaskCard = ({
       <div className="ml-1 h-8">
         {score ? (
           <div className="text-[30px]  font-bold text-black">
-            {score}
+          ₹ {score}
           </div>
         ) : (
           <div className="text-[30px] -mt-2 font-bold text-black">
-            {count}{isPercentage ? '%' : ''}
+          ₹ {count}{isPercentage ? '%' : ''}
           </div>
         )}
       </div>
@@ -49,7 +49,7 @@ const TaskCard = ({
               <img src={redArrowIcon} alt="Total Tasks" className="w-10 h-10" />
             </>
           )}
-          <span className='text-[15px] -ml-2'>{percentage}{isPercentage && '%'}</span>
+          <span className='text-[15px] -ml-2'>₹ {percentage}{isPercentage && '%'}</span>
           <span className="text-[15px] ml-2 text-gray-500">{percentageLabel}</span>
         </span>
       )}
