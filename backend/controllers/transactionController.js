@@ -34,7 +34,6 @@ const createTransaction = async (req, res) => {
     }
 };
 
-
 const getTransaction = async (req, res) => {
 
     try {

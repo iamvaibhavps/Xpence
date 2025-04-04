@@ -6,6 +6,11 @@ const generateToken = require("../utils/generateToken");
 const crypto = require("crypto");
 const { sendEmailHtml } = require("../utils/services/emailService");
 const Group = require("../models/Group");
+const UserPerformance = require("../models/UserPerformance");
+const { getCurrentFinancialYear, getPreviousFinancialYear } = require("../functions/calculations");
+
+const currFinYear = getCurrentFinancialYear();
+const prevFinYear = getPreviousFinancialYear();
 
 const registerController = async (req, res) => {
   const session = await mongoose.startSession();
@@ -40,6 +45,17 @@ const registerController = async (req, res) => {
 
     
     await newUser.save({ session });
+
+    // Create the userPerformance document
+    const userP = new UserPerformance({
+      userId: newUser._id,
+    });
+
+    await userP.save({ session });
+    
+    // add the current financial year to the userPerformance document
+    await userP.addYearIfMissing(currFinYear);
+    await userP.addYearIfMissing(prevFinYear);
 
     // create a group named 'Personal' for the user
     const group = new Group({

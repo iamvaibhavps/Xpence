@@ -1,4 +1,5 @@
 import { api } from "./apiConfig";
+
 // ----------------------- AUTH APIS ------------------------- //
 
 export const registerUser = async (userData) => {
@@ -16,4 +17,57 @@ export const forgotPassword = async (userData) => {
 };
 export const resetPassword = async (data) => {
   return await api.post("/auth/reset-password", data);
+};
+
+// ----------------------- USER APIS ------------------------- //
+
+export const getDashboardInfo = async (userId, filterTimeRange) => {
+  const response = await api.get(
+    `/users/get-dashboard-info/${userId}?filterTimeRange=${filterTimeRange}`
+  );
+  return response;
+};
+
+// ----------------------- NOTIFICATION APIS ------------------------- //
+
+export const getAllNotifications = async () => {
+  const response = await api.get("/notifications/all");
+  return response;
+};
+
+export const readNotification = async (notificationId) => {
+  const response = await api.put(`/notifications/${notificationId}/read`);
+  return response;
+};
+
+// ----------------------- TRANSACTION APIS ------------------------- //
+
+export const createTransaction = async (transactionData) => {
+  const response = await api.post("/transactions", transactionData);
+  return response;
+};
+
+export const getAllTransactions = async () => {
+  const response = await api.get("/transactions/all");
+  return response;
+};
+
+export const getUserTransactions = async () => {
+  const response = await api.get("/transactions/user");
+  return response;
+};
+
+export const getTransactionById = async (transactionId) => {
+  const response = await api.get(`/transactions/${transactionId}`);
+  return response;
+};
+
+export const updateTransaction = async (transactionId, transactionData) => {
+  const response = await api.put(`/transactions/${transactionId}`, transactionData);
+  return response;
+};
+
+export const deleteTransaction = async (transactionId) => {
+  const response = await api.delete(`/transactions/${transactionId}`);
+  return response;
 };
