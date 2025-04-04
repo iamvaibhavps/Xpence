@@ -37,7 +37,7 @@ exports.readNotification = async (req, res) => {
 
 exports.getAllNotifications = async (req, res) => {
   try {
-    const userId = req.user._id;
+    const userId = req.user.id;
     const userNotifications = await Notification.findOne({ userId }).select(
       "notifications"
     );

@@ -1,29 +1,24 @@
-import {
-  MdDashboard,
-  MdInsights,
-  MdAttachMoney,
-  MdGroups,
-} from "react-icons/md";
+import { LayoutDashboard, LineChart, DollarSign, Users } from "lucide-react";
 
 export const commonList = [
   {
     name: "Dashboard",
-    icon: MdDashboard,
+    icon: LayoutDashboard,
     path: "/dashboard",
   },
-  {
-    name: "My Impact",
-    icon: MdInsights,
-    path: "/my-impact",
-  },
+//   {
+//     name: "My Impact",
+//     icon: LineChart,
+//     path: "/my-impact",
+//   },
   {
     name: "My Transactions",
-    icon: MdAttachMoney,
+    icon: DollarSign,
     path: "/my-transactions",
   },
   {
     name: "My Groups",
-    icon: MdGroups,
+    icon: Users,
     path: "/my-groups",
   },
 ];

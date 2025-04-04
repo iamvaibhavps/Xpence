@@ -2,6 +2,7 @@ import Profile from "../components/profile";
 // import Profile from "../components/Profile";
 import StudentLayout from "../layouts/StudentLayout";
 import StudentDashboard from "../pages/Dashboard/StudentDashboard";
+import GroupSplit from "../pages/Shared/GroupSplit";
 import MyExpenses from "../pages/Shared/MyExpenses";
 import MyGroups from "../pages/Shared/MyGroups";
 import MyImpact from "../pages/Shared/MyImpact";
@@ -30,5 +31,9 @@ export const StudentRoutes = {
             path: "my-profile",
             element: <Profile />,
         },
+        {
+            path: "group-splits",
+            element: <GroupSplit />,
+        }
     ],
 };

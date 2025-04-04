@@ -1,6 +1,7 @@
 import Profile from "../components/profile";
 import SeniorCitizenLayout from "../layouts/SeniorCitizenLayout";
 import SeniorDashboard from "../pages/Dashboard/SeniorDashboard";
+import GroupSplit from "../pages/Shared/GroupSplit";
 import MyExpenses from "../pages/Shared/MyExpenses";
 import MyGroups from "../pages/Shared/MyGroups";
 import MyImpact from "../pages/Shared/MyImpact";
@@ -29,5 +30,9 @@ export const SeniorRoutes = {
             path: "my-profile",
             element: <Profile />,
         },
+        {
+            path: "group-splits",
+            element: <GroupSplit />,
+        }
     ],
 };

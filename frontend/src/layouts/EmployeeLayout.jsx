@@ -1,32 +1,21 @@
 import React from 'react';
-import { Outlet, Navigate } from 'react-router-dom';
+import { Outlet, Navigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Sidebar from '../components/Sidebar';
 import NavbarList from '../components/NavbarList';
 
 const EmployeeLayout = () => {
     const currentUser = useSelector((state) => state.user.user);
-
+    const location = useLocation();
     const routeTitles = {
         "/employee/dashboard": `Hi, ${currentUser?.name}!`,
-        "/employee/tasks/my-tasks": "My Tasks",
-        "/employee/tasks/assigned-tasks": "Assigned Tasks",
-        "/employee/tasks/create-task": "Create Tasks",
-        "/employee/tasks/all-tasks": "All Tasks",
-        "/employee/goals/my-goals": "My Goals",
-        "/employee/goals/assigned-goals": "Assigned Goals",
-        "/employee/goals/create-goal": "Create Goals",
-        "/employee/goals/all-goals": "All Goals",
-        "/employee/profile": "My Profile",
-        "/employee/my-impact": "My Impact",
-        "/employee/categories/teams-data": "Teams",
-        "/employee/categories/team-performance": "Team Performance",
-        "/employee/organization": "Organization",
-        "/employee/people": "Users",
-        "/employee/user-performance": "User Performance",
-        "/employee/help": "Help",
-        "/employee/settings": "Settings",
-        "/employee/invite-users": "Invite Users",
+        "/employee/my-impact": `My Impact`,
+        "/employee/my-transactions": "Transactions",
+        "/employee/notifications": "Notifications",
+        "/employee/profile": "Profile",
+        "/employee/my-groups": "My Group",
+        "/employee/my-expenses": "My Expenses",
+        "/employee/group-splits": "Splits",
     };
 
     const pageTitle = routeTitles[location?.pathname] || "Default Title";
