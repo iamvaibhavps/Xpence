@@ -3,7 +3,7 @@ import { Outlet, Navigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Sidebar from '../components/Sidebar';
 import NavbarList from '../components/NavbarList';
-
+import Chatbot from '../pages/Chatbot';
 const StudentLayout = () => {
     const currentUser = useSelector((state) => state.user.user);
     const location = useLocation();
@@ -34,6 +34,7 @@ const StudentLayout = () => {
 
     return (
         <div className="flex h-screen">
+     <Chatbot />
             <div className='hidden md:block '>
                 <Sidebar />
             </div>

@@ -796,7 +796,7 @@ const StudentDashboard = () => {
           data={categoryPieChartData}
           slotProps={{ legend: { hidden: true } }}
           className="flex flex-col items-center justify-center"
-          pieChartClassName="flex items-center justify-center lg:scale-110 mt-2"
+          pieChartClassName="flex items-center justify-center lg:scale-110 mt-2 "
         />
       </div>
       

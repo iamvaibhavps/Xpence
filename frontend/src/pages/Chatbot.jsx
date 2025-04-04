@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Dialog } from "@headlessui/react"; // Tailwind UI Modal component
-
+import bot from "../assets/robot.png"; // Replace with your bot image path
 const Chatbot = () => {
   const navigate = useNavigate();
   const [inputMessage, setInputMessage] = useState("");
@@ -101,13 +101,13 @@ const Chatbot = () => {
                 <div className="flex items-center space-x-3">
                   <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex justify-center items-center">
                     <img
-                      src="https://via.placeholder.com/50" // Replace with an actual bot avatar image
+                      src={bot} // Replace with an actual bot avatar image
                       alt="Bot Avatar"
                       className="w-full h-full rounded-full"
                     />
                   </div>
                   <div>
-                    <h2 className="text-xl font-semibold">AI Assistant</h2>
+                    <h2 className="text-xl font-semibold">Jarvis</h2>
                     <p className="text-sm text-gray-500">Your personal learning and finance assistant</p>
                   </div>
                 </div>
