@@ -1,6 +1,3 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -30,7 +27,7 @@ export default function HomePage() {
 
     useEffect(() => {
         if (currentUser) {
-            // Redirect to the appropriate dashboard based on role
+            
             switch (currentUser.role) {
                 case 'student':
                     navigate('/student/dashboard');
@@ -45,13 +42,11 @@ export default function HomePage() {
                     navigate('/senior/dashboard');
                     break;
                 default:
-                    // If no valid role, stay on homepage
+               
                     break;
             }
         }
     }, [currentUser, navigate]);
-
-    const currentUser = useSelector((state) => state.user.user);
 
     const videoRef = useRef(null);
 
@@ -74,32 +69,6 @@ export default function HomePage() {
     const handleContactMouseLeave = () => setContactDropdownOpen(false);
 
     return (
-        <div className='min-h-screen flex flex-col items-center justify-center bg-gray-100'>
-            <div className='text-center p-8 bg-white rounded-lg shadow-md'>
-                <h1 className='text-3xl font-bold mb-4'>Welcome to Smart Expense Management</h1>
-                <p className='mb-8'>Your personal finance companion</p>
-                
-                {!currentUser ? (
-                    <div className='space-x-4'>
-                        <button 
-                            onClick={() => navigate('/auth/sign-in')}
-                            className='px-6 py-2 bg-black text-white rounded-full'
-                        >
-                            Login
-                        </button>
-                        <button 
-                            onClick={() => navigate('/auth/sign-up')}
-                            className='px-6 py-2 border border-black rounded-full'
-                        >
-                            Sign Up
-                        </button>
-                    </div>
-                ) : (
-                    <p>Redirecting to your dashboard...</p>
-                )}
-            </div>
-        </div>
-    );
         <div className=" w-full min-h-screen bg-white px-1 overflow-y-auto  ">
             <Chatbot />
             {/* Header */}
