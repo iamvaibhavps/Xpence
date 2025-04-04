@@ -88,7 +88,7 @@ const createTransactionWithSplit = async (req, res) => {
     await chat.save();
 
     // Update the split record with the chat reference
-    splitRecord.chat = chat._id;
+    splitRecord.chatId = chat._id;
     await splitRecord.save();
 
     return ApiResponse(
