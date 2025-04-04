@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const { hashPassword, comparePassword } = require("../utils/passwords");
 const ApiResponse = require("../utils/ApiResponse");
+const ApiError = require("../utils/ApiError");
 const mongoose = require("mongoose");
 const generateToken = require("../utils/generateToken");
 const crypto = require("crypto");
