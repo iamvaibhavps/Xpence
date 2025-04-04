@@ -1,10 +1,12 @@
 import { useState, useRef, useEffect } from "react"
-import { ChevronDown, X } from "lucide-react"
+import { ChevronDown, X, Search } from "lucide-react"
 
 const MultiSelect = ({ options, placeholder = "Select...", isMulti = false, onChange, value, className = "" }) => {
     const [isOpen, setIsOpen] = useState(false)
     const [selectedOptions, setSelectedOptions] = useState(isMulti ? [] : null)
+    const [searchQuery, setSearchQuery] = useState("")
     const selectRef = useRef(null)
+    const searchInputRef = useRef(null)
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -18,6 +20,18 @@ const MultiSelect = ({ options, placeholder = "Select...", isMulti = false, onCh
             document.removeEventListener("mousedown", handleClickOutside)
         }
     }, [])
+
+    useEffect(() => {
+        // Focus search input when dropdown opens
+        if (isOpen && searchInputRef.current) {
+            searchInputRef.current.focus()
+        }
+        
+        // Clear search when dropdown closes
+        if (!isOpen) {
+            setSearchQuery("")
+        }
+    }, [isOpen])
 
     useEffect(() => {
         if (value) {
@@ -52,6 +66,10 @@ const MultiSelect = ({ options, placeholder = "Select...", isMulti = false, onCh
             setIsOpen(false)
         }
     }
+
+    const filteredOptions = options.filter(option => 
+        option.label.toLowerCase().includes(searchQuery.toLowerCase())
+    )
 
     return (
         <div className={`relative w-full ${className}`} ref={selectRef}>
@@ -91,34 +109,53 @@ const MultiSelect = ({ options, placeholder = "Select...", isMulti = false, onCh
                 <ChevronDown className={`w-5 h-5 transition-transform ${isOpen ? "rotate-180" : ""}`} />
             </div>
             {isOpen && (
-                <ul
-                    className="absolute z-10 w-full mt-1 bg-white border rounded-md shadow-lg max-h-60 overflow-auto"
-                    role="listbox"
-                >
-                    {options.map((option) => (
-                        <li
-                            key={option.value}
-
-                            className={`px-3 py-2 cursor-pointer hover:bg-blue-100 ${isMulti
-                                ? selectedOptions.some((item) => item.value === option.value)
-                                    ? "bg-blue-300"
-                                    : ""
-                                : selectedOptions && selectedOptions.value === option.value
-                                    ? "bg-gray-100"
-                                    : ""
-                                }`}
-                            onClick={() => toggleOption(option)}
-                            role="option"
-                            aria-selected={
-                                isMulti
-                                    ? selectedOptions.some((item) => item.value === option.value)
-                                    : selectedOptions && selectedOptions.value === option.value
-                            }
-                        >
-                            {option.label}
-                        </li>
-                    ))}
-                </ul>
+                <div className="absolute z-10 w-full mt-1 bg-white border rounded-md shadow-lg">
+                    <div className="p-2 border-b sticky top-0 bg-white">
+                        <div className="relative">
+                            <input
+                                ref={searchInputRef}
+                                type="text"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                placeholder="Search by name..."
+                                className="w-full py-1 px-3 pr-8 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                onClick={(e) => e.stopPropagation()}
+                            />
+                            <Search className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                        </div>
+                    </div>
+                    <ul
+                        className="max-h-52 overflow-auto"
+                        role="listbox"
+                    >
+                        {filteredOptions.length > 0 ? (
+                            filteredOptions.map((option) => (
+                                <li
+                                    key={option.value}
+                                    className={`px-3 py-2 cursor-pointer hover:bg-blue-100 ${isMulti
+                                        ? selectedOptions.some((item) => item.value === option.value)
+                                            ? "bg-blue-300"
+                                            : ""
+                                        : selectedOptions && selectedOptions.value === option.value
+                                            ? "bg-gray-100"
+                                            : ""
+                                        }`}
+                                    onClick={() => toggleOption(option)}
+                                    role="option"
+                                    aria-selected={
+                                        isMulti
+                                            ? selectedOptions.some((item) => item.value === option.value)
+                                            : selectedOptions && selectedOptions.value === option.value
+                                    }
+                                >
+                                    {option.label}
+                                </li>
+                            ))
+                        ) : (
+                            <li className="px-3 py-2 text-gray-500 text-center">No results found</li>
+                        )}
+                    </ul>
+                </div>
             )}
         </div>
     )

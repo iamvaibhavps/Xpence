@@ -24,6 +24,10 @@ const splitSchema = new mongoose.Schema(
         hasPaid: { type: Boolean, default: false },
       },
     ],
+    chatId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Chat",
+    },
   },
   { timestamps: true }
 );
