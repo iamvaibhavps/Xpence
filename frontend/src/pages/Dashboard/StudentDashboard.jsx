@@ -681,9 +681,9 @@ const StudentDashboard = () => {
 
     return (
         <div className="p-4">
-            <div className="bg-white rounded-lg shadow px-6 ">
+            {/* <div className="bg-white rounded-lg shadow px-6 ">
                 <p className="mb-4">Welcome, {currentUser?.name}!</p>
-            </div>
+            </div> */}
                 <div className="flex flex-col p-4 max-w-full">
     {/* Time Filter Dropdown */}
     <div className="relative flex w-full md:w-80 lg:w-64 justify-end">

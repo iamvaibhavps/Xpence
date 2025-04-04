@@ -8,7 +8,7 @@ export default function HomePage() {
 
     useEffect(() => {
         if (currentUser) {
-            // Redirect to the appropriate dashboard based on role
+          
             switch (currentUser.role) {
                 case 'student':
                     navigate('/student/dashboard');
@@ -23,7 +23,7 @@ export default function HomePage() {
                     navigate('/senior/dashboard');
                     break;
                 default:
-                    // If no valid role, stay on homepage
+                   
                     break;
             }
         }
