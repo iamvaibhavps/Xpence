@@ -1,4 +1,4 @@
-import Profile from "../components/Profile";
+import Profile from "../components/profile";
 import SeniorCitizenLayout from "../layouts/SeniorCitizenLayout";
 import SeniorDashboard from "../pages/Dashboard/SeniorDashboard";
 import GroupSplit from "../pages/Shared/GroupSplit";

@@ -1,4 +1,4 @@
-import Profile from "../components/Profile";
+import Profile from "../components/profile";
 import FamilyLayout from "../layouts/FamilyLayout";
 import FamilyDashboard from "../pages/Dashboard/FamilyDashboard";
 import GroupSplit from "../pages/Shared/GroupSplit";

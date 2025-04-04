@@ -1,4 +1,4 @@
-import Profile from "../components/Profile";
+import Profile from "../components/profile";
 import EmployeeLayout from "../layouts/EmployeeLayout";
 import EmployeeDashboard from "../pages/Dashboard/EmployeeDashboard";
 import GroupSplit from "../pages/Shared/GroupSplit";

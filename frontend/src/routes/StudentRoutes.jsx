@@ -1,4 +1,5 @@
-import Profile from "../components/Profile";
+import Profile from "../components/profile";
+// import Profile from "../components/Profile";
 import StudentLayout from "../layouts/StudentLayout";
 import StudentDashboard from "../pages/Dashboard/StudentDashboard";
 import GroupSplit from "../pages/Shared/GroupSplit";

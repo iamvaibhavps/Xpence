@@ -1,4 +1,5 @@
 import { api } from "./apiConfig";
+
 // ----------------------- AUTH APIS ------------------------- //
 
 export const registerUser = async (userData) => {
@@ -15,6 +16,15 @@ export const forgotPassword = async (userData) => {
 };
 export const resetPassword = async (data) => {
   return await api.post("/auth/reset-password", data);
+};
+
+// ----------------------- USER APIS ------------------------- //
+
+export const getDashboardInfo = async (userId, filterTimeRange) => {
+  const response = await api.get(
+    `/users/get-dashboard-info/${userId}?filterTimeRange=${filterTimeRange}`
+  );
+  return response;
 };
 
 // ----------------------- NOTIFICATION APIS ------------------------- //

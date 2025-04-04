@@ -6,11 +6,11 @@ export const commonList = [
     icon: LayoutDashboard,
     path: "/dashboard",
   },
-  {
-    name: "My Impact",
-    icon: LineChart,
-    path: "/my-impact",
-  },
+//   {
+//     name: "My Impact",
+//     icon: LineChart,
+//     path: "/my-impact",
+//   },
   {
     name: "My Transactions",
     icon: DollarSign,
