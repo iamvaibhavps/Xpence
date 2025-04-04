@@ -69,6 +69,14 @@ const FamilyDashboard = () => {
         { id: 4, value: 0, label: "Bonds", color: "#ffa500" },
     ]);
 
+    const [groupSplitChartData, setGroupSplitChartData] = useState([
+        { id: 0, value: 0, label: "Travel", color: "#ff7f50" },
+        { id: 1, value: 0, label: "Food", color: "#87ceeb" },
+        { id: 2, value: 0, label: "Entertainment", color: "#32cd32" },
+        { id: 3, value: 0, label: "Miscellaneous", color: "#ff69b4" },
+        { id: 4, value: 0, label: "Others", color: "#ffa500" },
+    ]);
+
     // -------------- Goal & Task Chart data -------------- //
     const [lineChartData, setLineChartData] = useState([]);
     const [goalBarData, setGoalBarData] = useState([]);
@@ -125,7 +133,6 @@ const FamilyDashboard = () => {
         );
         setFilterFinancialYear(value);
     };
-
     const dataForCards = {
         alltime: {
           label: "This Month",
@@ -150,6 +157,12 @@ const FamilyDashboard = () => {
               Gold: 4875,
               FDs: 4859,
             },
+            groupSplits: {
+              Travel: 1500,
+              Food: 1200,
+              Entertainment: 800,
+              Miscellaneous: 600,
+            }
           },
           filterData: {
             totalIncome: 143567,
@@ -172,6 +185,12 @@ const FamilyDashboard = () => {
               Gold: 3892,
               FDs: 1758,
             },
+            groupSplits: {
+              Travel: 1200,
+              Food: 800,
+              Entertainment: 600,
+              Miscellaneous: 400,
+            }
           },
         },
         thisweek: {
@@ -197,6 +216,12 @@ const FamilyDashboard = () => {
               Gold: 162,
               FDs: 52,
             },
+            groupSplits: {
+              Travel: 300,
+              Food: 200,
+              Entertainment: 150,
+              Miscellaneous: 100,
+            },
           },
           filterData: {
             totalIncome: 7843,
@@ -219,6 +244,12 @@ const FamilyDashboard = () => {
               Gold: 124,
               FDs: 47,
             },
+            groupSplits: {
+              Travel: 250,
+              Food: 150,
+              Entertainment: 100,
+              Miscellaneous: 50,
+            }
           },
         },
         prev7days: {
@@ -244,6 +275,12 @@ const FamilyDashboard = () => {
               Gold: 145,
               FDs: 94,
             },
+            groupSplits: {
+              Travel: 350,
+              Food: 250,
+              Entertainment: 200,
+              Miscellaneous: 150,
+            }
           },
           filterData: {
             totalIncome: 8642,
@@ -266,6 +303,12 @@ const FamilyDashboard = () => {
               Gold: 134,
               FDs: 125,
             },
+            groupSplits: {
+              Travel: 300,
+              Food: 200,
+              Entertainment: 150,
+              Miscellaneous: 100,
+            }
           },
         },
         thismonth: {
@@ -291,6 +334,12 @@ const FamilyDashboard = () => {
               Gold: 671,
               FDs: 507,
             },
+            groupSplits: {
+              Travel: 400,
+              Food: 300,
+              Entertainment: 250,
+              Miscellaneous: 200,
+            },
           },
           filterData: {
             totalIncome: 31268,
@@ -313,6 +362,12 @@ const FamilyDashboard = () => {
               Gold: 634,
               FDs: 390,
             },
+            groupSplits: {
+              Travel: 350,
+              Food: 250,
+              Entertainment: 200,
+              Miscellaneous: 150,
+            }
           },
         },
         lastmonth: {
@@ -338,6 +393,12 @@ const FamilyDashboard = () => {
               Gold: 987,
               FDs: 471,
             },
+            groupSplits: {
+              Travel: 450,
+              Food: 350,
+              Entertainment: 250,
+              Miscellaneous: 200,
+            }
           },
           filterData: {
             totalIncome: 29354,
@@ -360,6 +421,12 @@ const FamilyDashboard = () => {
               Gold: 923,
               FDs: 446,
             },
+            groupSplits: {
+              Travel: 400,
+              Food: 300,
+              Entertainment: 200,
+              Miscellaneous: 150,
+            }
           },
         },
         thisfinancialyear: {
@@ -385,6 +452,12 @@ const FamilyDashboard = () => {
               Gold: 5215,
               FDs: 2785,
             },
+            groupSplits: {
+              Travel: 500,
+              Food: 400,
+              Entertainment: 300,
+              Miscellaneous: 250,
+            }
           },
           filterData: {
             totalIncome: 171538,
@@ -407,6 +480,12 @@ const FamilyDashboard = () => {
               Gold: 4328,
               FDs: 2677,
             },
+            groupSplits: {
+              Travel: 450,
+              Food: 350,
+              Entertainment: 250,
+              Miscellaneous: 200,
+            }
           },
         },
         lastfinancialyear: {
@@ -432,6 +511,12 @@ const FamilyDashboard = () => {
               Gold: 4128,
               FDs: 3010,
             },
+            groupSplits: {
+              Travel: 600,
+              Food: 500,
+              Entertainment: 400,
+              Miscellaneous: 300,
+            }
           },
           filterData: {
             totalIncome: 154987,
@@ -454,6 +539,12 @@ const FamilyDashboard = () => {
               Gold: 4267,
               FDs: 2327,
             },
+            groupSplits: {
+              Travel: 550,
+              Food: 450,
+              Entertainment: 350,
+              Miscellaneous: 250,
+            }
           },
         },
       };
@@ -576,6 +667,34 @@ const FamilyDashboard = () => {
             // Handle investment distribution data
             const totalInvestments = performanceData.totalInvestments || 0;
             const investmentCategories = performanceData.investmentCategories || {};
+            const groupSplits = performanceData.groupSplits || {};
+            // console.log("groupSplits", groupSplits);
+            const splitValues = Object.values(groupSplits);
+            const totalSplit = splitValues.reduce((acc, value) => acc + value, 0);
+
+            // console.log("totalSplit", totalSplit);
+
+            if(totalSplit > 0) {
+                const splitChartData = Object.keys(groupSplits).map((category, index) => ({
+                    id: index,
+                    value: Math.ceil((groupSplits[category] / totalSplit) * 100) || 0,
+                    label: category.charAt(0).toUpperCase() + category.slice(1),
+                    color: ["#ff7f50", "#87ceeb", "#32cd32", "#ff69b4", "#ffa500"][index % 5],
+                }));
+                setGroupSplitChartData(splitChartData);
+            } else {
+
+              setGroupSplitChartData([
+                    {
+                        id: 0,
+                        value: 1,
+                        label: "No Data",
+                        color: "#d1d1d1",
+
+                    },
+                ]);
+            }
+
 
             if (totalInvestments === 0) {
                 setInvestmentPieChartData([
@@ -595,6 +714,8 @@ const FamilyDashboard = () => {
                 }));
                 setInvestmentPieChartData(investmentChartData);
             }
+
+
 
         } catch (error) {
             console.error("Error fetching organization user performance data: ", error);
@@ -638,7 +759,7 @@ const FamilyDashboard = () => {
             const response = await dataForLineChart[filterPerformanceYear];
             const data = response.data;
 
-            console.log("Data = ", data)
+            // console.log("Data = ", data)
 
             let userPerformanceArray = data;
 
@@ -680,7 +801,7 @@ const FamilyDashboard = () => {
     const containerRef = useRef(null);
 
     return (
-        <div className="p-4">
+        <div className="p-4 overflow-x-hidden">
             {/* <div className="bg-white rounded-lg shadow px-6 ">
                 <p className="mb-4">Welcome, {currentUser?.name}!</p>
             </div> */}
@@ -724,7 +845,7 @@ const FamilyDashboard = () => {
                 </div>
 
                 {/* Performance & Charts - LineChart and PieChart in the Same Row */}
-                <div className="flex flex-col lg:flex-row gap-4 mt-6">
+                <div className="flex flex-col lg:flex-row gap-4 mt-6 mb-6">
                     {/* Performance Graph */}
                     <div className="flex-1 p-4 bg-white rounded-2xl border-2">
                         <div className="flex justify-between items-center">
@@ -794,20 +915,32 @@ const FamilyDashboard = () => {
                             data={categoryPieChartData}
                             slotProps={{ legend: { hidden: true } }}
                             className="flex flex-col items-center justify-center"
-                            pieChartClassName="flex items-center justify-center lg:scale-110 mt-2"
+                            pieChartClassName="flex items-center justify-center lg:scale-110 mt-2 ml-28"
                         />
                     </div>
 
                 </div>
                 {/* Pie Chart */}
-                <div className="flex flex-col bg-white rounded-2xl items-center justify-center lg:w-1/3 p-4 border-2">
+                <div className='flex flex-col lg:flex-row gap-4 mt-6 mb-6'>
+                <div className="flex-1 flex flex-col bg-white rounded-2xl items-center justify-center lg:w-1/3 p-4 border-2 ">
                     <p className="text-lg font-medium">Investment Portfolio</p>
                     <CustomDoughnutChart
                         data={investmentPieChartData}
                         slotProps={{ legend: { hidden: true } }}
                         className="flex flex-col items-center justify-center"
-                        pieChartClassName="flex items-center justify-center lg:scale-110 mt-2"
-                    />
+                        pieChartClassName="flex items-center justify-center lg:scale-110 mt-2 ml-28"
+                        />
+                </div>
+
+                <div className="flex-1 flex flex-col bg-white rounded-2xl items-center justify-center lg:w-1/3 p-4 border-2 ">
+                    <p className="text-lg font-medium">Group Splits</p>
+                    <CustomDoughnutChart
+                        data={groupSplitChartData}
+                        slotProps={{ legend: { hidden: true } }}
+                        className="flex flex-col items-center justify-center"
+                        pieChartClassName="flex items-center justify-center lg:scale-110 mt-2 ml-28"
+                        />
+                </div>
                 </div>
             </div>
         </div>
