@@ -148,11 +148,11 @@ export default function MyExpenses() {
                         >
                             <CardBody>
                                 {/* Title & Amount */}
-                                <div className="flex justify-between items-center mb-3">
+                                <div className="flex justify-between items-center mb-3 ">
                                     <Typography variant="h6" className="text-gray-800 font-semibold">
                                         {transaction.title}
                                     </Typography>
-                                    <span className={`text-lg font-semibold ${transaction.paymentType === "credit" ? "text-green-600" : "text-red-500"}`}>
+                                    <span className={`w-full text-end text-lg font-semibold ${transaction.paymentType === "credit" ? "text-green-600" : "text-red-500"}`}>
                                         {transaction.paymentType === "credit" ? "+" : "-"} ₹{transaction.amount}
                                     </span>
                                 </div>

@@ -756,7 +756,7 @@ export default function GroupSplit() {
                                     <div className="p-4 bg-blue-50 rounded-lg shadow">
                                         <h3 className="text-lg font-semibold text-blue-800">Amount</h3>
                                         <p className="text-2xl font-bold text-blue-900">
-                                            ₹{selectedSplit.expense.amount}
+                                            ₹{Math.round(selectedSplit.expense.amount)}
                                         </p>
                                         <p className="text-sm text-blue-700 mt-1">
                                             {selectedSplit.expense.unit}
@@ -774,7 +774,6 @@ export default function GroupSplit() {
                                                     {selectedSplit.splitPayer.name}
 
                                                 </h4>
-                                                <p className="text-sm text-green-700">{selectedSplit.splitPayer.email}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -815,9 +814,6 @@ export default function GroupSplit() {
                                                                 <h4 className="text-md font-medium">
                                                                     {person.member.name} {isCurrentUser && "(You)"}
                                                                 </h4>
-                                                                <p className="text-sm text-gray-600">
-                                                                    {person.member.email}
-                                                                </p>
                                                             </div>
                                                         </div>
                                                         <div className="flex items-center justify-between ">

@@ -107,7 +107,10 @@ const updatePaymentStatus = async (req, res) => {
   try {
     const { splitId, memberId } = req.body;
 
-    const split = await Split.findById(splitId).populate("expense", "name category");
+    const split = await Split.findById(splitId).populate("expense", "title category");
+
+    console.log("Split:", split);
+
     const splitPayer = await User.findById(memberId);
     const paidTo = await User.findById(split.splitPayer);
 
@@ -117,7 +120,7 @@ const updatePaymentStatus = async (req, res) => {
     const transaction = new Transaction({
       user: split.splitPayer,
       paymentType: "credit",
-      title: `Payment recieved for split ${split.expense.name} from ${splitPayer.name}`,
+      title: `Payment recieved for split ${split.expense.title} from ${splitPayer.name}`,
       amount: split.splitBetween.find(
         (detail) => detail.member.toString() === memberId
       ).amount,
