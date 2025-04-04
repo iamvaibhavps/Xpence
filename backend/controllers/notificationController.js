@@ -1,6 +1,6 @@
+const Notification = require("../models/Notifications");
 const ApiResponse = require("../utils/ApiResponse");
 const ApiError = require("../utils/ApiError");
-const Notification = require("../models/Notification");
 
 exports.readNotification = async (req, res) => {
   try {

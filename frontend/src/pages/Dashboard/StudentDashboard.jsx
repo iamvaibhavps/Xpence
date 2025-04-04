@@ -657,6 +657,7 @@ const StudentDashboard = () => {
           );
       }
   };
+
   
   useEffect(() => {
       fetchOrgUserPerformance();
@@ -680,9 +681,8 @@ const StudentDashboard = () => {
 
     return (
         <div className="p-4">
-            <div className="bg-white rounded-lg shadow p-6">
+            <div className="bg-white rounded-lg shadow px-6 ">
                 <p className="mb-4">Welcome, {currentUser?.name}!</p>
-                <p>This is the student dashboard where you can manage your expenses and budget.</p>
             </div>
                 <div className="flex flex-col p-4 max-w-full">
     {/* Time Filter Dropdown */}

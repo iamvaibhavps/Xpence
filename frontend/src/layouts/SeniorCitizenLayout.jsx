@@ -7,7 +7,7 @@ import NavbarList from '../components/NavbarList';
 const SeniorCitizenLayout = () => {
     const currentUser = useSelector((state) => state.user.user);
 
-    // Redirect if not logged in or wrong role
+
     if (!currentUser) {
         return <Navigate to="/auth/sign-in" replace />;
     }

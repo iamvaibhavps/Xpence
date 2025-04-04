@@ -6,6 +6,8 @@ import { FaCalendarAlt, FaDollarSign, FaFileAlt, FaTags, FaInfoCircle, FaExchang
 import { X } from 'lucide-react';
 
 export default function CreateExpense({ handleCloseModalExpense }) {
+    
+    const [showSuccess, setShowSuccess] = useState(true);
 
     const [formData, setFormData] = useState({
         title: '',
@@ -126,162 +128,185 @@ export default function CreateExpense({ handleCloseModalExpense }) {
 
             console.log('Form data ready for submission:', expenseData);
             handleCloseModal();
+            setShowSuccess(true);
+            // setTimeout(() => {
+            //     setShowSuccess(false);
+            //     handleCloseModalExpense();
+            // }, 3000); // Hide success message after 3 seconds
         }
     };
+    
 
     return (
-        <div className="p-3 rounded-lg w-full pb-4 max-h-[80vh]">
+        <>
+            {/* Success Animation Overlay */}
+            {showSuccess ? (
+                <div className="flex items-center justify-center  bg-opacity-90 z-100 w-40 h-40">
+                    <video autoPlay className="w-40 h-40" onEnded={() => setShowSuccess(false)}>
+                        <source src="../../../src/assets/GoldenStar.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            ): (
+                <div className="p-3 rounded-lg w-full pb-4 max-h-[80vh]">
+                
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-semibold text-gray-800">Create New Expense</h2>
-                <button
-                    onClick={handleCloseModal}
-                    className="text-gray-500 hover:text-gray-700"
-                >
-                    <X />
-                </button>
+            <h2 className="text-2xl font-semibold text-gray-800">Create New Expense</h2>
+            <button
+                onClick={handleCloseModal}
+                className="text-gray-500 hover:text-gray-700"
+            >
+                <X />
+            </button>
+        </div>
+
+        <form onSubmit={handleSubmit}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Title Field */}
+                <div>
+                    <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
+                        Expense Title*
+                    </label>
+                    <Input
+                        type="text"
+                        id="title"
+                        name="title"
+                        value={formData.title}
+                        onChange={handleInputChange}
+                        placeholder="Enter expense title"
+                        icon={<FaFileAlt />}
+                    />
+                    {errors.title && <p className="mt-1 text-sm text-red-600">{errors.title}</p>}
+                </div>
+
+                {/* Amount Field */}
+                <div>
+                    <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-1">
+                        Amount (₹)*
+                    </label>
+                    <Input
+                        type="number"
+                        id="amount"
+                        name="amount"
+                        value={formData.amount}
+                        onChange={handleInputChange}
+                        placeholder="Enter amount"
+                        icon={<FaDollarSign />}
+                    />
+                    {errors.amount && <p className="mt-1 text-sm text-red-600">{errors.amount}</p>}
+                </div>
+
+                {/* Date Field */}
+                <div>
+                    <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">
+                        Date*
+                    </label>
+                    <Input
+                        type="date"
+                        id="date"
+                        name="date"
+                        value={formData.date}
+                        onChange={handleInputChange}
+                        icon={<FaCalendarAlt />}
+                    />
+                    {errors.date && <p className="mt-1 text-sm text-red-600">{errors.date}</p>}
+                </div>
+
+                {/* Category Field */}
+                <div>
+                    <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
+                        Category*
+                    </label>
+                    <SelectInput
+                        id="category"
+                        options={categoryOptions}
+                        value={formData.category}
+                        onChange={(option) => handleSelectChange(option, { name: 'category' })}
+                        placeholder="Select category"
+                        icon={<FaTags />}
+                    />
+                    {errors.category && <p className="mt-1 text-sm text-red-600">{errors.category}</p>}
+
+                    {formData.category?.value === 'other' && (
+                        <div className="mt-2">
+                            <Input
+                                type="text"
+                                id="customCategory"
+                                name="customCategory"
+                                value={formData.customCategory}
+                                onChange={handleInputChange}
+                                placeholder="Enter custom category"
+                                icon={<FaTags />}
+                            />
+                            {errors.customCategory && <p className="mt-1 text-sm text-red-600">{errors.customCategory}</p>}
+                        </div>
+                    )}
+                </div>
+
+                {/* Payment Type Field */}
+                <div className='col-span-2'>
+                    <label htmlFor="paymentType" className="block text-sm font-medium text-gray-700 mb-1">
+                        Payment Type*
+                    </label>
+                    <SelectInput
+                        id="paymentType"
+                        options={paymentTypeOptions}
+                        value={formData.paymentType}
+                        onChange={(option) => handleSelectChange(option, { name: 'paymentType' })}
+                        placeholder="Select payment type"
+                        icon={<FaExchangeAlt />}
+                    />
+                    {errors.paymentType && <p className="mt-1 text-sm text-red-600">{errors.paymentType}</p>}
+                </div>
+
+                {/* Attachment Field */}
+                {/* <div>
+                    <label htmlFor="attachments" className="block text-sm font-medium text-gray-700 mb-1">
+                        Attachments
+                    </label>
+                    <Input
+                        type="file"
+                        id="attachments"
+                        name="attachments"
+                        onChange={handleFileChange}
+                        className="file:mr-4 file:py-1  file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 w-full"
+                    />
+                </div> */}
+
+                {/* Description Field - Takes full width */}
+                <div className="md:col-span-2">
+                    <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
+                        Description
+                    </label>
+                    <TextArea
+                        id="description"
+                        name="description"
+                        value={formData.description}
+                        onChange={handleInputChange}
+                        placeholder="Enter expense description"
+                        rows={4}
+                        icon={<FaInfoCircle />}
+                    />
+                </div>
             </div>
 
-            <form onSubmit={handleSubmit}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Title Field */}
-                    <div>
-                        <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
-                            Expense Title*
-                        </label>
-                        <Input
-                            type="text"
-                            id="title"
-                            name="title"
-                            value={formData.title}
-                            onChange={handleInputChange}
-                            placeholder="Enter expense title"
-                            icon={<FaFileAlt />}
-                        />
-                        {errors.title && <p className="mt-1 text-sm text-red-600">{errors.title}</p>}
-                    </div>
+            {/* Action Buttons */}
+            <div className="mt-8 flex justify-end space-x-3">
 
-                    {/* Amount Field */}
-                    <div>
-                        <label htmlFor="amount" className="block text-sm font-medium text-gray-700 mb-1">
-                            Amount (₹)*
-                        </label>
-                        <Input
-                            type="number"
-                            id="amount"
-                            name="amount"
-                            value={formData.amount}
-                            onChange={handleInputChange}
-                            placeholder="Enter amount"
-                            icon={<FaDollarSign />}
-                        />
-                        {errors.amount && <p className="mt-1 text-sm text-red-600">{errors.amount}</p>}
-                    </div>
-
-                    {/* Date Field */}
-                    <div>
-                        <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">
-                            Date*
-                        </label>
-                        <Input
-                            type="date"
-                            id="date"
-                            name="date"
-                            value={formData.date}
-                            onChange={handleInputChange}
-                            icon={<FaCalendarAlt />}
-                        />
-                        {errors.date && <p className="mt-1 text-sm text-red-600">{errors.date}</p>}
-                    </div>
-
-                    {/* Category Field */}
-                    <div>
-                        <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
-                            Category*
-                        </label>
-                        <SelectInput
-                            id="category"
-                            options={categoryOptions}
-                            value={formData.category}
-                            onChange={(option) => handleSelectChange(option, { name: 'category' })}
-                            placeholder="Select category"
-                            icon={<FaTags />}
-                        />
-                        {errors.category && <p className="mt-1 text-sm text-red-600">{errors.category}</p>}
-
-                        {formData.category?.value === 'other' && (
-                            <div className="mt-2">
-                                <Input
-                                    type="text"
-                                    id="customCategory"
-                                    name="customCategory"
-                                    value={formData.customCategory}
-                                    onChange={handleInputChange}
-                                    placeholder="Enter custom category"
-                                    icon={<FaTags />}
-                                />
-                                {errors.customCategory && <p className="mt-1 text-sm text-red-600">{errors.customCategory}</p>}
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Payment Type Field */}
-                    <div className='col-span-2'>
-                        <label htmlFor="paymentType" className="block text-sm font-medium text-gray-700 mb-1">
-                            Payment Type*
-                        </label>
-                        <SelectInput
-                            id="paymentType"
-                            options={paymentTypeOptions}
-                            value={formData.paymentType}
-                            onChange={(option) => handleSelectChange(option, { name: 'paymentType' })}
-                            placeholder="Select payment type"
-                            icon={<FaExchangeAlt />}
-                        />
-                        {errors.paymentType && <p className="mt-1 text-sm text-red-600">{errors.paymentType}</p>}
-                    </div>
-
-                    {/* Attachment Field */}
-                    {/* <div>
-                        <label htmlFor="attachments" className="block text-sm font-medium text-gray-700 mb-1">
-                            Attachments
-                        </label>
-                        <Input
-                            type="file"
-                            id="attachments"
-                            name="attachments"
-                            onChange={handleFileChange}
-                            className="file:mr-4 file:py-1  file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 w-full"
-                        />
-                    </div> */}
-
-                    {/* Description Field - Takes full width */}
-                    <div className="md:col-span-2">
-                        <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
-                            Description
-                        </label>
-                        <TextArea
-                            id="description"
-                            name="description"
-                            value={formData.description}
-                            onChange={handleInputChange}
-                            placeholder="Enter expense description"
-                            rows={4}
-                            icon={<FaInfoCircle />}
-                        />
-                    </div>
+                <button
+                    type="submit"
+                    className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-dark hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                >
+                    Create Expense
+                </button>
+            </div>
+        </form>
                 </div>
 
-                {/* Action Buttons */}
-                <div className="mt-8 flex justify-end space-x-3">
 
-                    <button
-                        type="submit"
-                        className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-dark hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                    >
-                        Create Expense
-                    </button>
-                </div>
-            </form>
-        </div>
+            )}
+
+
+        </>
     );
 }

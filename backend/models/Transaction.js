@@ -10,7 +10,7 @@ const transactionSchema = new mongoose.Schema(
     paymentType: {
       type: String,
       enum: ["credit", "debit"],
-      required: true, 
+      required: true,
     },
     title: {
       type: String,
@@ -21,8 +21,8 @@ const transactionSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    unit:{
-        type: String,
+    unit: {
+      type: String,
     },
     category: {
       type: String,
@@ -35,16 +35,12 @@ const transactionSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
-    group: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Group",
-    },
   },
   {
     timestamps: true,
   }
 );
 
-const Expense = mongoose.model("Transaction", expenseSchema);
+const Expense = mongoose.model("Transaction", transactionSchema);
 
 module.exports = Expense;

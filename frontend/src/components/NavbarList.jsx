@@ -445,7 +445,7 @@ export default function NavbarList({ title }) {
             <AnimatedDialog
                 isOpen={isTaskModelOpen}
                 onClose={handleCloseModalExpense}
-                className="max-w-xs md:max-w-4xl lg:max-w-5xl max-h-[700px] md:max-h-[790px] p-[25px] overflow-y-auto pb-4"
+                className="w-auto p-[25px] overflow-y-auto pb-4"
                 roundedSize="lg"
             >
                 <CreateExpense handleCloseModalExpense={handleCloseModalExpense} />
