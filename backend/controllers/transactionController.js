@@ -11,9 +11,11 @@ const convertToINR = (amount, currency) => {
     GBP: 110.42, // 1 GBP = 110.42 INR
     JPY: 0.57, // 1 JPY = 0.57 INR
     AUD: 53.34, // 1 AUD = 53.34 INR
+    INR: 1, // 1 INR = 1 INR
   };
 
   const upperCaseCurrency = currency ? currency.toUpperCase() : null;
+  // console.log("Currency:", upperCaseCurrency);
 
   if (!amount || !exchangeRates[upperCaseCurrency]) {
     throw new Error("Invalid input or exchange rate not available.");
@@ -118,6 +120,64 @@ const getAllTransactions = async (req, res) => {
   }
 };
 
+const verifyDuplicates = async (req, res) => {
+  try {
+    const { title, amount, date, user } = req.body;
+
+    if (!title || !amount || !date || !user) {
+      return res.status(400).json({
+        success: false,
+        message: "Missing required fields for duplicate check",
+      });
+    }
+
+    const startDate = new Date(date);
+    startDate.setHours(0, 0, 0, 0);
+
+    const endDate = new Date(date);
+    endDate.setHours(23, 59, 59, 999);
+
+    const duplicates = await Transaction.find({
+      user: user,
+      title: title,
+      amount: amount,
+      date: {
+        $gte: startDate,
+        $lte: endDate,
+      },
+    }).lean();
+
+    if (duplicates.length > 0) {
+      return res.status(200).json({
+        success: true,
+        isDuplicate: true,
+        message: "Duplicate transactions found!",
+        duplicates: duplicates.map((d) => ({
+          id: d._id,
+          title: d.title,
+          amount: d.amount,
+          date: d.date,
+          category: d.category,
+          paymentType: d.paymentType,
+        })),
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      isDuplicate: false,
+      message: "No duplicate transactions found",
+    });
+  } catch (error) {
+    console.error("Error checking for duplicates:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Error checking for duplicates",
+      error: error.message,
+    });
+  }
+};
+
 // TODO: to be implemented
 const addBulkTransactions = async (req, res) => {
   try {
@@ -150,4 +210,5 @@ module.exports = {
   getTransaction,
   getAllTransactions,
   addBulkTransactions,
+  verifyDuplicates,
 };

@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../../redux/Slices/userSlice";
 import { Eye, EyeOff } from "lucide-react";
 // import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
-
+import logo from "../../assets/beenium_logos/xpencelogo.png"
 
 const PhoneNumberInput = ({ value, onChange }) => {
     const [selectedCountry, setSelectedCountry] = useState({
@@ -233,24 +233,24 @@ export default function Register() {
 
     return (
         <div className="w-full p-3 md:p-2 min-h-screen relative">
-            <div className="w-full md:px-6 lg:px-28 py-4">
+            <div className="w-full md:px-6 lg:px-28 -mt-8">
                 <div className="flex flex-col md:flex-row justify-between items-center p-4">
                     <div className="flex items-center gap-4 mb-4 md:mb-0">
                         <Link to={"/"}>
                             <img
                                 alt="logo"
-                                src={""}
-                                className="w-full h-10"
+                                src={logo}
+                                className="w-full h-40  object-cover"
                             />
                         </Link>
                     </div>
                     <div className="flex flex-col md:flex-row items-center gap-4">
                         <p className="text-center md:text-left">
-                            Already have an account?
+                            Already have an account?{" "}
                         </p>
                         <Link to={"/auth/sign-in"}>
                             <button className="px-8 py-3 bg-dark text-white rounded-full font-semibold">
-                                Log in
+                                Sign In
                             </button>
                         </Link>
                     </div>

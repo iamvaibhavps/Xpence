@@ -88,7 +88,7 @@ const createTransactionWithSplit = async (req, res) => {
     await chat.save();
 
     // Update the split record with the chat reference
-    splitRecord.chat = chat._id;
+    splitRecord.chatId = chat._id;
     await splitRecord.save();
 
     return ApiResponse(
@@ -107,43 +107,45 @@ const updatePaymentStatus = async (req, res) => {
   try {
     const { splitId, memberId } = req.body;
 
-    const split = await Split.findById(splitId);
+    const split = await Split.findById(splitId).populate("expense", "title category");
+
+    console.log("Split:", split);
+
     const splitPayer = await User.findById(memberId);
     const paidTo = await User.findById(split.splitPayer);
 
     if (!split)
       return res.status(404).json({ error: "Split record not found" });
 
-    // create the transaction of paymentType credit for the member
     const transaction = new Transaction({
       user: split.splitPayer,
       paymentType: "credit",
-      title: `Payment recieved for split ${split.title} from ${splitPayer.name}`,
+      title: `Payment recieved for split ${split.expense.title} from ${splitPayer.name}`,
       amount: split.splitBetween.find(
         (detail) => detail.member.toString() === memberId
       ).amount,
       date: new Date(),
-      description: `Payment for split ${split.description} from ${splitPayer.name}`,
-      group: split.group,
+      description: `Payment for split ${split.expense.title} from ${splitPayer.name}`,
+      group: split.expense.category,
     });
 
-    // Save the transaction
+   
     await transaction.save();
 
-    // Create the transaction of paymentType debit for the payer
+   
     const payerTransaction = new Transaction({
       user: memberId,
       paymentType: "debit",
-      title: `Payment done to ${splitPayer.name} for split ${split.title}`,
+      title: `Payment done to ${splitPayer.name} for split ${split.expense.title}`,
       amount: split.splitBetween.find(
         (detail) => detail.member.toString() === memberId
       ).amount,
       date: new Date(),
-      description: `Payment done to ${paidTo.name} for split ${split.description}`,
-      group: split.group,
+      description: `Payment done to ${paidTo.name} for split ${split.expense.title}`,
+      group: split.expense.category,
     });
 
-    // Save the transaction
+ 
     await payerTransaction.save();
 
     let isAlreadyPaid = false;

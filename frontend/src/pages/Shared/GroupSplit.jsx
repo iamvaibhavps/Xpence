@@ -43,6 +43,7 @@ import AnimatedDialog from '../../components/Dialog/AnimtedDialog';
 import SelectInput from '../../components/Dropdown/SelectInput';
 import { useSelector } from 'react-redux';
 import { createSplitTransaction, deleteGroup, getAllGroups, getAllSplits, updateSplitPaymentStatus } from '../../apis/apiCalls';
+import Chat from '../../components/Chat';
 // import Chat from '../../components/Chat';
 
 export default function GroupSplit() {
@@ -755,7 +756,7 @@ export default function GroupSplit() {
                                     <div className="p-4 bg-blue-50 rounded-lg shadow">
                                         <h3 className="text-lg font-semibold text-blue-800">Amount</h3>
                                         <p className="text-2xl font-bold text-blue-900">
-                                            ₹{selectedSplit.expense.amount}
+                                            ₹{Math.round(selectedSplit.expense.amount)}
                                         </p>
                                         <p className="text-sm text-blue-700 mt-1">
                                             {selectedSplit.expense.unit}
@@ -773,7 +774,6 @@ export default function GroupSplit() {
                                                     {selectedSplit.splitPayer.name}
 
                                                 </h4>
-                                                <p className="text-sm text-green-700">{selectedSplit.splitPayer.email}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -814,9 +814,6 @@ export default function GroupSplit() {
                                                                 <h4 className="text-md font-medium">
                                                                     {person.member.name} {isCurrentUser && "(You)"}
                                                                 </h4>
-                                                                <p className="text-sm text-gray-600">
-                                                                    {person.member.email}
-                                                                </p>
                                                             </div>
                                                         </div>
                                                         <div className="flex items-center justify-between ">
@@ -867,21 +864,8 @@ export default function GroupSplit() {
                             </div>
                         )}
 
-                        {showChat && (
-                            <div className="w-full md:w-1/3 flex flex-col h-full border-t md:border-t-0 border-gray-200">
-                                <div className="flex items-center justify-between relative">
-                                    <div className="p-4 border-b border-gray-200 bg-gray-50 w-full">
-                                        <h3 className="text-lg font-semibold">Group Chat</h3>
-                                        <p className="text-sm text-gray-600">Discuss about this split</p>
-                                    </div>
-                                    <div className="absolute top-3 right-3">
-                                        <X className="cursor-pointer" onClick={() => setViewSplitDialog(false)} />
-                                    </div>
-                                </div>
-
-                                {/* Chat Messages */}
-                                chat messages
-                            </div>
+                        {showChat === false && (
+                            <Chat selectedChat={selectedSplit.chatId} />
                         )}
                     </div>
                 )}

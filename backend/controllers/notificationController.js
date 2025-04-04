@@ -4,7 +4,9 @@ const ApiError = require("../utils/ApiError");
 
 exports.readNotification = async (req, res) => {
   try {
-    const userId = req.user._id;
+    const userId = req.user.id;
+    console.log(userId);
+
     const notificationId = req.params.id;
 
     if (!notificationId) {
@@ -38,10 +40,11 @@ exports.readNotification = async (req, res) => {
 exports.getAllNotifications = async (req, res) => {
   try {
     const userId = req.user.id;
+    // console.log(userId);
     const userNotifications = await Notification.findOne({ userId }).select(
       "notifications"
     );
-
+    console.log(userNotifications);
     const notifications = userNotifications?.notifications || [];
 
     return ApiResponse(

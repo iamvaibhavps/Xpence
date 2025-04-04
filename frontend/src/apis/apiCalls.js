@@ -56,6 +56,14 @@ export const getTransaction = async (transactionId) => {
   return response;
 };
 
+export const verifyDuplicateTransaction = async (transactionData) => {
+  const response = await api.post(
+    "/transactions/verify-duplicates",
+    transactionData
+  );
+  return response;
+};
+
 // ----------------------- GROUP APIS ------------------------- //
 
 export const createGroup = async (groupData) => {
@@ -114,5 +122,31 @@ export const getAllSplits = async () => {
 
 export const getSplitById = async (splitId) => {
   const response = await api.get(`/splits/${splitId}`);
+  return response;
+};
+
+
+// ----------------------- CHAT APIS ------------------------- //
+
+export const createChat = async (chatData) => {
+  const response = await api.post("/chats/create-chat", chatData);
+  return response;
+};
+
+export const sendMessage = async (messageData) => {
+  const response = await api.post("/chats/send-message", messageData);
+  return response;
+};
+
+export const getAllMessages = async (chatId, currentUser) => {
+  const response = await api.get(
+    `/chats/get-all-messages/${chatId}?userId=${currentUser.id}`
+  );
+  return response;
+};
+
+export const deleteAllMessages = async (chatId) => {
+  // console.log("chatId: ", chatId);
+  const response = await api.post("/chats/delete-all-messages", { chatId });
   return response;
 };

@@ -8,6 +8,7 @@ import {
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/Slices/userSlice";
 import { Eye, EyeOff } from "lucide-react";
+import logo from "../../assets/beenium_logos/xpencelogo.png"
 
 export default function Login() {
     const [formData, setFormData] = useState({
@@ -85,14 +86,14 @@ export default function Login() {
 
     return (
         <div className="w-full p-3 md:p-2 min-h-screen relative">
-            <div className="w-full md:px-6 lg:px-28 py-4">
+            <div className="w-full md:px-6 lg:px-28 -mt-8">
                 <div className="flex flex-col md:flex-row justify-between items-center p-4">
                     <div className="flex items-center gap-4 mb-4 md:mb-0">
                         <Link to={"/"}>
                             <img
                                 alt="logo"
-                                src={""}
-                                className="w-full h-10"
+                                src={logo}
+                                className="w-full h-40  object-cover"
                             />
                         </Link>
                     </div>

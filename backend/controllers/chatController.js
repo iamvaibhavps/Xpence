@@ -1,11 +1,10 @@
 const Chat = require('../models/Chat');
 const Message = require('../models/Message');
-const Team = require('../models/Team');
 const User = require('../models/User');
 const ApiError = require('../utils/ApiError');
 const ApiResponse = require('../utils/ApiResponse');
 
-// Create a new chat
+
 exports.createChat = async (req, res) => {
     const { groupId, members } = req.body;
 
@@ -14,7 +13,6 @@ exports.createChat = async (req, res) => {
     }
 
     try {
-        // Prepare members array
         const formattedMembers = members.map((memberId) => ({
             userId: memberId,
         }));
@@ -31,7 +29,7 @@ exports.createChat = async (req, res) => {
     }
 };
 
-// View all chats
+
 exports.getAllChats = async (req, res) => {
     try {
         const chats = await Chat.find()
@@ -43,7 +41,7 @@ exports.getAllChats = async (req, res) => {
     }
 };
 
-// View a single chat by ID
+
 exports.getChatById = async (req, res) => {
     try {
         const { id: chatId } = req.params;
@@ -69,7 +67,7 @@ exports.getChatById = async (req, res) => {
     }
 };
 
-// Send a message in a chat
+
 exports.sendMessage = async (req, res) => {
     const { sender, content, chatId, type, attachments } = req.body;
 
@@ -122,7 +120,7 @@ exports.sendMessage = async (req, res) => {
     }
 };
 
-// Update a chat by ID, replacing all members with new members
+
 exports.updateChatById = async (req, res) => {
     const { members } = req.body;
 
@@ -151,7 +149,7 @@ exports.updateChatById = async (req, res) => {
     }
 };
 
-// Delete all messages in a specific chat
+
 exports.deleteAllMessages = async (req, res) => {
     const { chatId } = req.body;
 
@@ -173,7 +171,7 @@ exports.deleteAllMessages = async (req, res) => {
     }
 };
 
-// Delete a chat by ID
+
 exports.deleteChatById = async (req, res) => {
     try {
         const chat = await Chat.findByIdAndDelete(req.params.id);
@@ -186,7 +184,7 @@ exports.deleteChatById = async (req, res) => {
     }
 };
 
-// Block a user from a chat
+
 exports.blockUser = async (req, res) => {
     const { chatId, userId } = req.body;
 
@@ -213,7 +211,7 @@ exports.blockUser = async (req, res) => {
     }
 };
 
-// Unblock a user from a chat
+
 exports.unblockUser = async (req, res) => {
     const { chatId, userId } = req.body;
 
