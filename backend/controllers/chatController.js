@@ -1,6 +1,5 @@
 const Chat = require('../models/Chat');
 const Message = require('../models/Message');
-const Team = require('../models/Team');
 const User = require('../models/User');
 const ApiError = require('../utils/ApiError');
 const ApiResponse = require('../utils/ApiResponse');

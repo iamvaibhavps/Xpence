@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import io from 'socket.io-client';
-import { blockUser, deleteAllMessages, getAllMessages, sendMessage, unblockUser } from '../apis/apiCalls';
+import { deleteAllMessages, getAllMessages, sendMessage } from '../apis/apiCalls';
 import { Avatar, Button, Collapse, ListItem, Menu, MenuHandler, MenuItem, MenuList, Typography } from '@material-tailwind/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ChevronDownIcon, ChevronUpIcon, DeleteIcon, Paperclip, PowerIcon, UserCheckIcon, UserCircleIcon } from 'lucide-react';
@@ -17,7 +17,7 @@ import Input from './Form_Components/Input';
 
 const socket = io('http://localhost:5000');
 
-function ProfileMenu({ handleDeleteChat, blockedList, unblockedList, handleBlockUser, handleUnblockUser }) {
+function ProfileMenu({ handleDeleteChat,  }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [openNestedMenuUnblock, setopenNestedMenuUnblock] = useState(false);
@@ -36,36 +36,69 @@ function ProfileMenu({ handleDeleteChat, blockedList, unblockedList, handleBlock
     };
 
     return (
-        <React.Fragment>
-            <Menu open={isMenuOpen} handler={setIsMenuOpen} className="z-50">
+        <React.Fragment >
+            <Menu
+                open={isMenuOpen}
+                handler={setIsMenuOpen}
+                // placement="bottom-end"
+                // allowHover={true}
+                className='z-50 '
+            >
                 <MenuHandler>
                     <Button
                         variant="text"
                         color="blue-gray"
-                        className="flex items-center gap-1 rounded-full py-0.5 pr-1 pl-0.5 justify-end"
+                        className="flex items-center   gap-1 rounded-full py-0.5 pr-1 pl-0.5 justify-end"
                         selected={isMenuOpen || isMobileMenuOpen}
                         onClick={() => setIsMobileMenuOpen((cur) => !cur)}
                     >
                         <TbDotsVertical className="h-6 w-6 text-dark" />
                     </Button>
                 </MenuHandler>
-                <MenuList className="rounded-xl lg:block">
-                    <MenuItem onClick={() => handleDeleteChat()} className="px-2 flex items-center gap-2 rounded">
-                        <DeleteIcon className="h-4 w-4" strokeWidth={2} />
-                        <Typography as="span" variant="small" className="font-normal" color="inherit">
+
+                <MenuList className=" rounded-xl lg:block">
+                    <MenuItem
+                        key={"Clear Chat"}
+                        onClick={() => handleDeleteChat()}
+                        className={`px-2 flex items-center gap-2 rounded`}
+                    >
+                        {React.createElement(DeleteIcon, {
+                            className: `h-4 w-4 `,
+                            strokeWidth: 2,
+                        })}
+                        <Typography
+                            as="span"
+                            variant="small"
+                            className="font-normal"
+                            color={"inherit"}
+                        >
                             Clear Chat
                         </Typography>
                     </MenuItem>
+
                 </MenuList>
             </Menu>
             <div className="block lg:hidden">
                 <Collapse open={isMobileMenuOpen}>
-                    <MenuItem onClick={() => handleDeleteChat()} className="px-2 flex items-center gap-2 rounded">
-                        <DeleteIcon className="h-4 w-4" strokeWidth={2} />
-                        <Typography as="span" variant="small" className="font-normal" color="inherit">
+                    <MenuItem
+                        key={"Clear Chat"}
+                        onClick={() => handleDeleteChat()}
+                        className={`px-2 flex items-center gap-2 rounded ${""}`}
+                    >
+                        {React.createElement(DeleteIcon, {
+                            className: `h-4 w-4 ${""}`,
+                            strokeWidth: 2,
+                        })}
+                        <Typography
+                            as="span"
+                            variant="small"
+                            className="font-normal"
+                            color={"inherit"}
+                        >
                             Clear Chat
                         </Typography>
                     </MenuItem>
+
                 </Collapse>
             </div>
         </React.Fragment>
@@ -92,25 +125,25 @@ export default function Chat({ selectedChat }) {
         }
     };
 
-    const handleBlockUser = async (userId) => {
-        const blockData = { chatId: selectedChat, userId };
-        try {
-            await blockUser(blockData);
-            showSuccessToast("User blocked successfully");
-        } catch (error) {
-            showErrorToast("Failed to block user");
-        }
-    };
+    // const handleBlockUser = async (userId) => {
+    //     const blockData = { chatId: selectedChat, userId };
+    //     try {
+    //         await blockUser(blockData);
+    //         showSuccessToast("User blocked successfully");
+    //     } catch (error) {
+    //         showErrorToast("Failed to block user");
+    //     }
+    // };
 
-    const handleUnblockUser = async (userId) => {
-        const unblockData = { chatId: selectedChat, userId };
-        try {
-            await unblockUser(unblockData);
-            showSuccessToast("User unblocked successfully");
-        } catch (error) {
-            showErrorToast("Failed to unblock user");
-        }
-    };
+    // const handleUnblockUser = async (userId) => {
+    //     const unblockData = { chatId: selectedChat, userId };
+    //     try {
+    //         await unblockUser(unblockData);
+    //         showSuccessToast("User unblocked successfully");
+    //     } catch (error) {
+    //         showErrorToast("Failed to unblock user");
+    //     }
+    // };
 
     const handleInputChange = (e) => {
         setMessage(e.target.value);
@@ -149,9 +182,9 @@ export default function Chat({ selectedChat }) {
                 try {
                     const response = await getAllMessages(selectedChat, currentUser);
                     setCurr(response.data.data.members.find(member => member?.userId?._id === currentUser?.id));
-                    if (response.data?.data?.managerId?._id === currentUser.id || currentUser.role === "owner") {
-                        setIsManager(true);
-                    }
+                    // if (response.data?.data?.managerId?._id === currentUser.id || currentUser.role === "owner") {
+                    //     setIsManager(true);
+                    // }
                     setMessages(response.data.data.messages);
                     socket.emit('joinChat', selectedChat);
                 } catch (error) {
@@ -165,7 +198,7 @@ export default function Chat({ selectedChat }) {
 
     useEffect(() => {
         const handleReceiveMessage = (newMessage) => {
-            if (newMessage.chatId._id === selectedChat) {
+            if (newMessage.chatId._id && currentUser.id !== newMessage.sender._id === selectedChat) {
                 setMessages((prevMessages) => [...prevMessages, newMessage]);
             }
         };
@@ -192,14 +225,11 @@ export default function Chat({ selectedChat }) {
                     />
                     <div className="font-semibold text-xl">Chat</div>
                 </div>
+                {/** */}
                 <div className="w-12 md:w-10 lg:w-8">
-                    {isManager && (
+                    {isManager === false && (
                         <ProfileMenu
                             handleDeleteChat={handleDeleteChat}
-                            blockedList={blockedList}
-                            unblockedList={unblockedList}
-                            handleBlockUser={handleBlockUser}
-                            handleUnblockUser={handleUnblockUser}
                             className="z-40"
                         />
                     )}
@@ -215,7 +245,7 @@ export default function Chat({ selectedChat }) {
                             {msg.sender._id !== currentUser.id && (
                                 <div className="flex items-start space-x-2">
                                     <img
-                                        src={`${import.meta.env.VITE_IMAGE_UPLOAD_URL}/${msg?.sender?.profilePicture}`}
+                                        src={'https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o='}
                                         alt={msg.sender.name}
                                         className="w-8 h-8 rounded-full border border-gray-400 shadow-sm flex-shrink-0"
                                     />
