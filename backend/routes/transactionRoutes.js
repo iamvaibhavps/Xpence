@@ -10,6 +10,11 @@ router.get(
   transactionController.getTransaction
 );
 router.get("/all", authMiddleware, transactionController.getAllTransactions);
+router.post(
+  "/verify-duplicates",
+  authMiddleware,
+  transactionController.verifyDuplicates
+);
 router.post("/bulk", transactionController.addBulkTransactions);
 
 module.exports = router;

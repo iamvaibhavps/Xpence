@@ -56,6 +56,14 @@ export const getTransaction = async (transactionId) => {
   return response;
 };
 
+export const verifyDuplicateTransaction = async (transactionData) => {
+  const response = await api.post(
+    "/transactions/verify-duplicates",
+    transactionData
+  );
+  return response;
+};
+
 // ----------------------- GROUP APIS ------------------------- //
 
 export const createGroup = async (groupData) => {

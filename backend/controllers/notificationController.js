@@ -5,7 +5,8 @@ const ApiError = require("../utils/ApiError");
 exports.readNotification = async (req, res) => {
   try {
     const userId = req.user.id;
-    
+    console.log(userId);
+
     const notificationId = req.params.id;
 
     if (!notificationId) {

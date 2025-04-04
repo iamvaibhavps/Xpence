@@ -107,7 +107,7 @@ const updatePaymentStatus = async (req, res) => {
   try {
     const { splitId, memberId } = req.body;
 
-    const split = await Split.findById(splitId);
+    const split = await Split.findById(splitId).populate("expense", "name category");
     const splitPayer = await User.findById(memberId);
     const paidTo = await User.findById(split.splitPayer);
 
@@ -117,13 +117,13 @@ const updatePaymentStatus = async (req, res) => {
     const transaction = new Transaction({
       user: split.splitPayer,
       paymentType: "credit",
-      title: `Payment recieved for split ${split.title} from ${splitPayer.name}`,
+      title: `Payment recieved for split ${split.expense.name} from ${splitPayer.name}`,
       amount: split.splitBetween.find(
         (detail) => detail.member.toString() === memberId
       ).amount,
       date: new Date(),
-      description: `Payment for split ${split.description} from ${splitPayer.name}`,
-      group: split.group,
+      description: `Payment for split ${split.expense.title} from ${splitPayer.name}`,
+      group: split.expense.category,
     });
 
    
@@ -133,13 +133,13 @@ const updatePaymentStatus = async (req, res) => {
     const payerTransaction = new Transaction({
       user: memberId,
       paymentType: "debit",
-      title: `Payment done to ${splitPayer.name} for split ${split.title}`,
+      title: `Payment done to ${splitPayer.name} for split ${split.expense.title}`,
       amount: split.splitBetween.find(
         (detail) => detail.member.toString() === memberId
       ).amount,
       date: new Date(),
-      description: `Payment done to ${paidTo.name} for split ${split.description}`,
-      group: split.group,
+      description: `Payment done to ${paidTo.name} for split ${split.expense.title}`,
+      group: split.expense.category,
     });
 
  
