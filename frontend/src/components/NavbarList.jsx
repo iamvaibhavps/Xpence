@@ -211,7 +211,6 @@ export default function NavbarList({ title }) {
     const [searchResults, setSearchResults] = useState([]);
     const [showResults, setShowResults] = useState(false);
 
-
     const handleSearch = async (e) => {
         setSearchTerm(e.target.value);
         if (e.target.value.trim() === '') {
@@ -445,7 +444,7 @@ export default function NavbarList({ title }) {
             <AnimatedDialog
                 isOpen={isTaskModelOpen}
                 onClose={handleCloseModalExpense}
-                className="w-auto p-[25px] overflow-y-auto pb-4"
+                className="max-w-xs md:max-w-4xl lg:max-w-5xl max-h-[700px] md:max-h-[790px] p-[25px] overflow-y-auto pb-4"
                 roundedSize="lg"
             >
                 <CreateExpense handleCloseModalExpense={handleCloseModalExpense} />
