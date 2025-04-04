@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Types;
 const Chat = require("../models/Chat");
 
+const Transaction = require("../models/Transaction");
 const Group = require("../models/Group");
 const Split = require("../models/Split");
 
@@ -125,9 +126,12 @@ const deleteGroup = async (req, res) => {
       return ApiResponse(404, "Group not found", null, res);
     }
 
-    await Split.deleteMany({ group: groupId });
+    const splitResponse = await Split.find({ group: groupId });
 
+    const transactionIds = splitResponse.map((split) => split.expense);
     const chatIds = group.splits.map((split) => split.chatId);
+
+    await Transaction.deleteMany({ _id: { $in: transactionIds } });
     await Chat.deleteMany({ _id: { $in: chatIds } });
 
     await Group.findByIdAndDelete(groupId);

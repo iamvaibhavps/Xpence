@@ -39,7 +39,7 @@ export default function MyExpenses() {
     const [currentPage, setCurrentPage] = useState(1);
     const [refreshTimestamp, setRefreshTimestamp] = useState(Date.now());
     const [isSortOpen, setIsSortOpen] = useState(false);
-    const [selectedSort, setSelectedSort] = useState(""); 
+    const [selectedSort, setSelectedSort] = useState("");
     const [isDialogOpen, setIsDialogOpen] = useState(false); // Add missing state
     const location = useLocation();
     const transactionsPerPage = 6;
@@ -175,7 +175,7 @@ export default function MyExpenses() {
                                         <Typography variant="h6" className="text-gray-800 font-semibold">
                                             {transaction.title}
                                         </Typography>
-                                        <span className={`text-lg font-semibold ${transaction.paymentType === "credit" ? "text-green-600" : "text-red-500"}`}>
+                                        <span className={`text-lg font-semibold text-end w-full ${transaction.paymentType === "credit" ? "text-green-600" : "text-red-500"}`}>
                                             {transaction.paymentType === "credit" ? "+" : "-"} ₹{parseFloat(Math.round(transaction.amount * 100) / 100).toFixed(2)}
                                         </span>
                                     </div>
@@ -241,21 +241,21 @@ export default function MyExpenses() {
 
                         <div className="grid grid-cols-1 gap-3">
                             {[
-                                { 
-                                    label: "Date (Newest First)", 
-                                    sortFn: (a, b) => new Date(b.created_at || b.date) - new Date(a.created_at || a.date) 
+                                {
+                                    label: "Date (Newest First)",
+                                    sortFn: (a, b) => new Date(b.created_at || b.date) - new Date(a.created_at || a.date)
                                 },
-                                { 
-                                    label: "Date (Oldest First)", 
-                                    sortFn: (a, b) => new Date(a.created_at || a.date) - new Date(b.created_at || b.date) 
+                                {
+                                    label: "Date (Oldest First)",
+                                    sortFn: (a, b) => new Date(a.created_at || a.date) - new Date(b.created_at || b.date)
                                 },
-                                { 
-                                    label: "Amount (Highest First)", 
-                                    sortFn: (a, b) => parseFloat(b.amount) - parseFloat(a.amount) 
+                                {
+                                    label: "Amount (Highest First)",
+                                    sortFn: (a, b) => parseFloat(b.amount) - parseFloat(a.amount)
                                 },
-                                { 
-                                    label: "Amount (Lowest First)", 
-                                    sortFn: (a, b) => parseFloat(a.amount) - parseFloat(b.amount) 
+                                {
+                                    label: "Amount (Lowest First)",
+                                    sortFn: (a, b) => parseFloat(a.amount) - parseFloat(b.amount)
                                 }
                             ].map(({ label, sortFn }) => (
                                 <Button

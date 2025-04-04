@@ -185,6 +185,8 @@ export default function Chat({ selectedChat }) {
                     // if (response.data?.data?.managerId?._id === currentUser.id || currentUser.role === "owner") {
                     //     setIsManager(true);
                     // }
+                    
+
                     setMessages(response.data.data.messages);
                     socket.emit('joinChat', selectedChat);
                 } catch (error) {
