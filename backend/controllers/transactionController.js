@@ -11,9 +11,11 @@ const convertToINR = (amount, currency) => {
     GBP: 110.42, // 1 GBP = 110.42 INR
     JPY: 0.57, // 1 JPY = 0.57 INR
     AUD: 53.34, // 1 AUD = 53.34 INR
+    INR: 1, // 1 INR = 1 INR
   };
 
   const upperCaseCurrency = currency ? currency.toUpperCase() : null;
+  // console.log("Currency:", upperCaseCurrency);
 
   if (!amount || !exchangeRates[upperCaseCurrency]) {
     throw new Error("Invalid input or exchange rate not available.");

@@ -28,7 +28,7 @@ export default function CreateExpense({ handleCloseModalExpense, groupId }) {
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [apiError, setApiError] = useState(null);
-    const [showSuccess, setShowSuccess] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(true);
 
     const categoryOptions = [
         { value: 'travel', label: 'Travel' },
@@ -144,13 +144,15 @@ export default function CreateExpense({ handleCloseModalExpense, groupId }) {
                 group: formData.group
             };
 
+            console.log('Expense Data:', expenseData);
+
             try {
                 const response = await createTransaction(expenseData);
                 console.log('Transaction created successfully:', response.data);
                 showSuccessToast('Transaction created successfully!');
                 setShowSuccess(true);
                 handleCloseModal();
-                navigate('/my-expenses', { state: { refresh: true } });
+                navigate('my-transactions?success=true', { state: { refresh: true } });
             } catch (error) {
                 console.error('Error creating transaction:', error);
                 setApiError(
@@ -164,16 +166,6 @@ export default function CreateExpense({ handleCloseModalExpense, groupId }) {
     };
 
     return (
-        <>
-            {/* Success Animation Overlay */}
-            {showSuccess ? (
-                <div className="flex items-center justify-center  bg-opacity-90 z-100 w-40 h-40">
-                    <video autoPlay className="w-40 h-40" onEnded={() => setShowSuccess(false)}>
-                        <source src="../../../src/assets/GoldenStar.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            ) : (
                 <div className="p-3 rounded-lg w-full pb-4 max-h-[80vh]">
                     <div className="flex justify-between items-center mb-6">
                         <h2 className="text-2xl font-semibold text-gray-800">Create New Expense</h2>
@@ -335,7 +327,6 @@ export default function CreateExpense({ handleCloseModalExpense, groupId }) {
                         </div>
                     </form>
                 </div>
-            )}
-        </>
+    
     );
 }

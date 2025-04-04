@@ -14,6 +14,25 @@ import { useLocation } from "react-router-dom";
 import AnimatedDialog from "../../components/Dialog/AnimtedDialog";
 
 export default function MyExpenses() {
+
+    // get params from url
+    const params = new URLSearchParams(window.location.search);
+    const success = params.get("success");
+
+    console.log("Success:", success);
+
+    const [showModal, setShowModal] = useState(false);
+
+    // setTimeout for 3 seconds
+    useEffect(() => {
+        if (success) {
+            setShowModal(true);
+            setTimeout(() => {
+                setShowModal(false);
+            }, 3000);
+        }
+    }, [success]);
+
     const [transactions, setTransactions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [filteredTransactions, setFilteredTransactions] = useState([]);
@@ -57,7 +76,18 @@ export default function MyExpenses() {
     const totalPages = Math.ceil(filteredTransactions.length / transactionsPerPage);
 
     return (
+        <>
+        {showModal && (
+            <div className="flex items-center justify-center  bg-opacity-90 z-100 w-40 h-40">
+                <video autoPlay className="w-40 h-40" onEnded={() => setShowModal(false)}>
+                    <source src="../../assets/GoldenStar.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        )}
+        
         <div className="p-5">
+            
             {/* Header */}
             <div className="flex flex-col md:flex-row justify-between items-center mb-5 gap-3">
                 {/* Title */}
@@ -233,5 +263,7 @@ export default function MyExpenses() {
             </AnimatedDialog>
 
         </div>
+        
+        </>
     );
 }
