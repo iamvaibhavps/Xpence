@@ -53,6 +53,7 @@ export default function GroupSplit() {
 
     const queryParams = new URLSearchParams(location.search);
     const groupId = queryParams.get('groupId');
+    const createdById = queryParams.get('createdBy') || currentUser.id;
 
     const [loading, setLoading] = useState(false);
     const [group, setGroup] = useState(null);
@@ -412,14 +413,17 @@ export default function GroupSplit() {
                         {group?.name || "Group Splits"}
                     </Typography>
                 </div>
-                <div className='flex justify-end px-4 py-2 hover:bg-red-50 rounded-lg cursor-pointer'
-                    onClick={() => handleDeleteGroup(groupId)}
-                >
-                    <Trash className='text-red-500 cursor-pointer ml-auto' size={24} />
-                    <span className='text-red-500 cursor-pointer ml-2' >
-                        Delete
-                    </span>
-                </div>
+
+                {createdById === currentUser.id && (
+                    <div className='flex justify-end px-4 py-2 hover:bg-red-50 rounded-lg cursor-pointer'
+                        onClick={() => handleDeleteGroup(groupId)}
+                    >
+                        <Trash className='text-red-500 cursor-pointer ml-auto' size={24} />
+                        <span className='text-red-500 cursor-pointer ml-2' >
+                            Delete
+                        </span>
+                    </div>
+                )}
             </div>
 
             <div className="flex justify-between items-center mb-6">
@@ -502,7 +506,7 @@ export default function GroupSplit() {
                                                 }`}
                                         >
                                             {person.hasPaid && <Check size={12} className="mr-1" />}
-                                            {person.member.name.split(' ')[0]} (₹{person.amount})
+                                            {person.member.name.split(' ')[0]} (₹{Math.round(person.amount).toFixed(2)})
                                         </div>
                                     ))}
                                     {split.splitBetween.length > 3 && (
@@ -612,6 +616,7 @@ export default function GroupSplit() {
                             onChange={(selected) => setFormData(prev => ({ ...prev, category: selected.value }))}
                             placeholder="Select Category"
                             borderRadius="0.5rem"
+                            className='z-30'
                         />
                     </div>
 
@@ -638,9 +643,9 @@ export default function GroupSplit() {
                                 <Tab value="equal" onClick={() => setSplitType('equal')}>
                                     Equal Split
                                 </Tab>
-                                <Tab value="custom" onClick={() => setSplitType('custom')}>
+                                {/* <Tab value="custom" onClick={() => setSplitType('custom')}>
                                     Custom Split
-                                </Tab>
+                                </Tab> */}
                             </TabsHeader>
                         </Tabs>
                     </div>
@@ -801,7 +806,7 @@ export default function GroupSplit() {
                                     <div className="overflow-hidden bg-white rounded-lg shadow-md">
                                         <div className="divide-y divide-gray-200">
                                             {selectedSplit.splitBetween.map((person) => {
-                                                const isCurrentUser = person.member._id === currentUser.id;
+                                                const isCurrentUser = person.member._id === selectedSplit?.splitPayer._id;
                                                 return (
                                                     <div
                                                         key={person._id}
@@ -821,7 +826,8 @@ export default function GroupSplit() {
                                                             </div>
                                                         </div>
                                                         <div className="flex items-center justify-between ">
-                                                            <h4 className="text-md font-bold mr-3">₹{person.amount}</h4>
+                                                            <h4 className="text-md font-bold mr-3">₹{Math.round(person.amount).toFixed(2)}</h4>
+                                                            
                                                             <div className='flex items-center'>
                                                                 <span
                                                                     className={`px-3 py-1 rounded-full text-xs font-semibold ${isCurrentUser || person.hasPaid
@@ -829,7 +835,8 @@ export default function GroupSplit() {
                                                                         : "bg-gray-100 text-gray-800"
                                                                         }`}
                                                                 >
-                                                                    {isCurrentUser || person.hasPaid ? "Paid" : "Pending"}
+                                                                    {isCurrentUser || person.hasPaid ? "Paid" : "Pending"} {" "}
+                                                                    
                                                                 </span>
                                                                 <span>
                                                                     {selectedSplit.splitPayer._id === currentUser.id && (
@@ -841,7 +848,6 @@ export default function GroupSplit() {
                                                                                     handlePaymentStatus(
                                                                                         person.member._id,
                                                                                         selectedSplit._id,
-
                                                                                     );
                                                                                 }
                                                                             }}
@@ -852,7 +858,7 @@ export default function GroupSplit() {
                                                                                 // <CheckCircle size={16} />
                                                                                 <span></span>
                                                                             ) : (
-                                                                                <Circle size={16} />
+                                                                                !isCurrentUser && <Circle size={16} />
                                                                             )}
                                                                         </button>
                                                                     )}

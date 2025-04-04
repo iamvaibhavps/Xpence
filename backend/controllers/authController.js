@@ -33,7 +33,7 @@ const registerController = async (req, res) => {
     }
 
     const hashedPassword = await hashPassword(password);
-    console.log("Hashed Password: ", hashedPassword);
+    // console.log("Hashed Password: ", hashedPassword);
 
     const newUser = new User({
       name,

@@ -94,7 +94,8 @@ export default function MyGroups() {
             const response = await createGroup({
                 name: formData.name,
                 description: formData.description,
-                members: memberIds
+                members: memberIds,
+                userId: currentUser.id
             });
 
             if (response.data) {
@@ -257,7 +258,7 @@ export default function MyGroups() {
                                     variant="text"
                                     className="text-blue-500 hover:bg-blue-50 p-2"
                                     onClick={() =>
-                                        navigate(`/${currentUser.role}/group-splits?groupId=${group._id}`)
+                                        navigate(`/${currentUser.role}/group-splits?groupId=${group._id}&createdBy=${group.createdBy._id}`)
                                     }
                                 >
                                     View Details

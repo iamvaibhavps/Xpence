@@ -8,7 +8,7 @@ const Split = require("../models/Split");
 
 const createGroup = async (req, res) => {
   try {
-    const { name, members, description } = req.body;
+    const { name, members, description, userId } = req.body;
 
     if (!name || !members || members.length === 0) {
       return ApiResponse(400, "Group name and members are required", null, res);
@@ -18,6 +18,7 @@ const createGroup = async (req, res) => {
       name,
       members,
       description,
+      createdBy: userId,
     });
 
     await group.save();
@@ -104,6 +105,7 @@ const getAllGroups = async (req, res) => {
       name: { $ne: "Personal" },
     })
       .populate("members", "name email phoneNo")
+      .populate("createdBy", "name _id")
       .sort({ createdAt: -1 });
 
     return ApiResponse(200, "Groups retrieved successfully", groups, res);

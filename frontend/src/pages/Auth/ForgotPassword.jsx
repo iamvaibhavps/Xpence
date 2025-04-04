@@ -23,7 +23,7 @@ export default function ForgotPassword() {
             setMessage('');
 
             const response = await forgotPassword({ email });
-            console.log(response);
+            // console.log(response);
             const resetToken = response.data.resetToken;
             if (response.data) {
                 setMessage('Password reset instructions have been sent to your email.');

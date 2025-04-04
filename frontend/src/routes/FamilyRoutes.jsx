@@ -19,7 +19,7 @@ export const FamilyRoutes = {
             element: <MyImpact />,
         },
         {
-            path: "my-expenses",
+            path: "my-transactions",
             element: <MyExpenses />,
         },
         {

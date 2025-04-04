@@ -637,7 +637,7 @@ export default function MyImpact() {
         const response = await dataForLineChart[filterPerformanceYear];
         const data = response.data;
 
-        console.log("Data = ", data)
+        // console.log("Data = ", data)
 
         let userPerformanceArray = data;
 

@@ -25,7 +25,7 @@ export default function Sidebar() {
     const filteredList = commonList;
 
     return (
-        <Card className="h-[calc(100vh)] w-64 p-4 shadow-xl shadow-blue-gray-900/5 border-r">
+        <Card className="h-[calc(100vh)] w-64 p-4 shadow-xl shadow-blue-gray-900/5 border-r ">
             <div className="mb-2 p-4 ">
                 <Typography variant="h5" color="blue-gray" className="pl-3">
                     Xpence

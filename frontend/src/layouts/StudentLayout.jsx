@@ -23,20 +23,13 @@ const StudentLayout = () => {
         return <Navigate to="/auth/sign-in" replace />;
     }
 
-
-    if (!currentUser) {
-        return <Navigate to="/auth/sign-in" replace />;
-    }
-
     if (currentUser.role !== 'student') {
         return <Navigate to="/" replace />;
     }
 
     return (
         <div className="flex h-screen">
-            <div className='hidden md:block '>
-                <Sidebar />
-            </div>
+            <Sidebar />
             <div className="flex flex-col flex-1 overflow-hidden">
                 <NavbarList title={pageTitle} />
                 <main className="flex-1 overflow-y-auto p-4">
