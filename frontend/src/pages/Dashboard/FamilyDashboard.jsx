@@ -69,6 +69,14 @@ const FamilyDashboard = () => {
         { id: 4, value: 0, label: "Bonds", color: "#ffa500" },
     ]);
 
+    const [groupSplitChartData, setGroupSplitChartData] = useState([
+        { id: 0, value: 0, label: "Travel", color: "#ff7f50" },
+        { id: 1, value: 0, label: "Food", color: "#87ceeb" },
+        { id: 2, value: 0, label: "Entertainment", color: "#32cd32" },
+        { id: 3, value: 0, label: "Miscellaneous", color: "#ff69b4" },
+        { id: 4, value: 0, label: "Others", color: "#ffa500" },
+    ]);
+
     // -------------- Goal & Task Chart data -------------- //
     const [lineChartData, setLineChartData] = useState([]);
     const [goalBarData, setGoalBarData] = useState([]);
@@ -125,338 +133,421 @@ const FamilyDashboard = () => {
         );
         setFilterFinancialYear(value);
     };
-
     const dataForCards = {
         alltime: {
-          label: "This Month",
-          performanceData: {
-            totalIncome: 159789,
-            totalExpenses: 93452,
-            totalSavings: 42861,
-            totalInvestments: 23476,
-            spendingEfficiencyScore: 85.4,
-            investmentGrowth: 12.3,
-            groupContributions: 5243,
-            expenseCategories: {
-              Food: 22847,
-              Rent: 28975,
-              Entertainment: 12368,
-              Transport: 14672,
-              Miscellaneous: 14590,
+            label: "This Month",
+            performanceData: {
+                totalIncome: 159789,
+                totalExpenses: 93452,
+                totalSavings: 42861,
+                totalInvestments: 23476,
+                spendingEfficiencyScore: 85.4,
+                investmentGrowth: 12.3,
+                groupContributions: 5243,
+                expenseCategories: {
+                    Food: 22847,
+                    Rent: 28975,
+                    Entertainment: 12368,
+                    Transport: 14672,
+                    Miscellaneous: 14590,
+                },
+                investmentCategories: {
+                    MutualFunds: 7289,
+                    Stocks: 6453,
+                    Gold: 4875,
+                    FDs: 4859,
+                },
+                groupSplits: {
+                    Travel: 1500,
+                    Food: 1200,
+                    Entertainment: 800,
+                    Miscellaneous: 600,
+                }
             },
-            investmentCategories: {
-              MutualFunds: 7289,
-              Stocks: 6453,
-              Gold: 4875,
-              FDs: 4859,
+            filterData: {
+                totalIncome: 143567,
+                totalExpenses: 87921,
+                totalSavings: 37915,
+                totalInvestments: 17731,
+                spendingEfficiencyScore: 82.7,
+                investmentGrowth: 10.4,
+                groupContributions: 4529,
+                expenseCategories: {
+                    Food: 20376,
+                    Rent: 26589,
+                    Entertainment: 11248,
+                    Transport: 13578,
+                    Miscellaneous: 16130,
+                },
+                investmentCategories: {
+                    MutualFunds: 6598,
+                    Stocks: 5483,
+                    Gold: 3892,
+                    FDs: 1758,
+                },
+                groupSplits: {
+                    Travel: 1200,
+                    Food: 800,
+                    Entertainment: 600,
+                    Miscellaneous: 400,
+                }
             },
-          },
-          filterData: {
-            totalIncome: 143567,
-            totalExpenses: 87921,
-            totalSavings: 37915,
-            totalInvestments: 17731,
-            spendingEfficiencyScore: 82.7,
-            investmentGrowth: 10.4,
-            groupContributions: 4529,
-            expenseCategories: {
-              Food: 20376,
-              Rent: 26589,
-              Entertainment: 11248,
-              Transport: 13578,
-              Miscellaneous: 16130,
-            },
-            investmentCategories: {
-              MutualFunds: 6598,
-              Stocks: 5483,
-              Gold: 3892,
-              FDs: 1758,
-            },
-          },
         },
         thisweek: {
-          label: "This Week",
-          performanceData: {
-            totalIncome: 8563,
-            totalExpenses: 5238,
-            totalSavings: 2312,
-            totalInvestments: 1013,
-            spendingEfficiencyScore: 76.3,
-            investmentGrowth: 3.24,
-            groupContributions: 657,
-            expenseCategories: {
-              Food: 1526,
-              Rent: 2187,
-              Entertainment: 683,
-              Transport: 534,
-              Miscellaneous: 308,
+            label: "This Week",
+            performanceData: {
+                totalIncome: 8563,
+                totalExpenses: 5238,
+                totalSavings: 2312,
+                totalInvestments: 1013,
+                spendingEfficiencyScore: 76.3,
+                investmentGrowth: 3.24,
+                groupContributions: 657,
+                expenseCategories: {
+                    Food: 1526,
+                    Rent: 2187,
+                    Entertainment: 683,
+                    Transport: 534,
+                    Miscellaneous: 308,
+                },
+                investmentCategories: {
+                    MutualFunds: 512,
+                    Stocks: 287,
+                    Gold: 162,
+                    FDs: 52,
+                },
+                groupSplits: {
+                    Travel: 300,
+                    Food: 200,
+                    Entertainment: 150,
+                    Miscellaneous: 100,
+                },
             },
-            investmentCategories: {
-              MutualFunds: 512,
-              Stocks: 287,
-              Gold: 162,
-              FDs: 52,
+            filterData: {
+                totalIncome: 7843,
+                totalExpenses: 5072,
+                totalSavings: 2093,
+                totalInvestments: 878,
+                spendingEfficiencyScore: 73.4,
+                investmentGrowth: 2.76,
+                groupContributions: 612,
+                expenseCategories: {
+                    Food: 1324,
+                    Rent: 2076,
+                    Entertainment: 623,
+                    Transport: 587,
+                    Miscellaneous: 462,
+                },
+                investmentCategories: {
+                    MutualFunds: 458,
+                    Stocks: 276,
+                    Gold: 124,
+                    FDs: 47,
+                },
+                groupSplits: {
+                    Travel: 250,
+                    Food: 150,
+                    Entertainment: 100,
+                    Miscellaneous: 50,
+                }
             },
-          },
-          filterData: {
-            totalIncome: 7843,
-            totalExpenses: 5072,
-            totalSavings: 2093,
-            totalInvestments: 878,
-            spendingEfficiencyScore: 73.4,
-            investmentGrowth: 2.76,
-            groupContributions: 612,
-            expenseCategories: {
-              Food: 1324,
-              Rent: 2076,
-              Entertainment: 623,
-              Transport: 587,
-              Miscellaneous: 462,
-            },
-            investmentCategories: {
-              MutualFunds: 458,
-              Stocks: 276,
-              Gold: 124,
-              FDs: 47,
-            },
-          },
         },
         prev7days: {
-          label: "Compared to Previous Week",
-          performanceData: {
-            totalIncome: 8927,
-            totalExpenses: 5487,
-            totalSavings: 2532,
-            totalInvestments: 1208,
-            spendingEfficiencyScore: 78.2,
-            investmentGrowth: 3.54,
-            groupContributions: 723,
-            expenseCategories: {
-              Food: 1713,
-              Rent: 2276,
-              Entertainment: 798,
-              Transport: 614,
-              Miscellaneous: 386,
+            label: "Compared to Previous Week",
+            performanceData: {
+                totalIncome: 8927,
+                totalExpenses: 5487,
+                totalSavings: 2532,
+                totalInvestments: 1208,
+                spendingEfficiencyScore: 78.2,
+                investmentGrowth: 3.54,
+                groupContributions: 723,
+                expenseCategories: {
+                    Food: 1713,
+                    Rent: 2276,
+                    Entertainment: 798,
+                    Transport: 614,
+                    Miscellaneous: 386,
+                },
+                investmentCategories: {
+                    MutualFunds: 621,
+                    Stocks: 348,
+                    Gold: 145,
+                    FDs: 94,
+                },
+                groupSplits: {
+                    Travel: 350,
+                    Food: 250,
+                    Entertainment: 200,
+                    Miscellaneous: 150,
+                }
             },
-            investmentCategories: {
-              MutualFunds: 621,
-              Stocks: 348,
-              Gold: 145,
-              FDs: 94,
+            filterData: {
+                totalIncome: 8642,
+                totalExpenses: 5328,
+                totalSavings: 2286,
+                totalInvestments: 1128,
+                spendingEfficiencyScore: 75.6,
+                investmentGrowth: 3.08,
+                groupContributions: 658,
+                expenseCategories: {
+                    Food: 1532,
+                    Rent: 2196,
+                    Entertainment: 724,
+                    Transport: 487,
+                    Miscellaneous: 389,
+                },
+                investmentCategories: {
+                    MutualFunds: 542,
+                    Stocks: 327,
+                    Gold: 134,
+                    FDs: 125,
+                },
+                groupSplits: {
+                    Travel: 300,
+                    Food: 200,
+                    Entertainment: 150,
+                    Miscellaneous: 100,
+                }
             },
-          },
-          filterData: {
-            totalIncome: 8642,
-            totalExpenses: 5328,
-            totalSavings: 2286,
-            totalInvestments: 1128,
-            spendingEfficiencyScore: 75.6,
-            investmentGrowth: 3.08,
-            groupContributions: 658,
-            expenseCategories: {
-              Food: 1532,
-              Rent: 2196,
-              Entertainment: 724,
-              Transport: 487,
-              Miscellaneous: 389,
-            },
-            investmentCategories: {
-              MutualFunds: 542,
-              Stocks: 327,
-              Gold: 134,
-              FDs: 125,
-            },
-          },
         },
         thismonth: {
-          label: "This Month",
-          performanceData: {
-            totalIncome: 32457,
-            totalExpenses: 20134,
-            totalSavings: 8367,
-            totalInvestments: 3956,
-            spendingEfficiencyScore: 80.3,
-            investmentGrowth: 6.24,
-            groupContributions: 1457,
-            expenseCategories: {
-              Food: 5123,
-              Rent: 7236,
-              Entertainment: 2978,
-              Transport: 3847,
-              Miscellaneous: 2950,
+            label: "This Month",
+            performanceData: {
+                totalIncome: 32457,
+                totalExpenses: 20134,
+                totalSavings: 8367,
+                totalInvestments: 3956,
+                spendingEfficiencyScore: 80.3,
+                investmentGrowth: 6.24,
+                groupContributions: 1457,
+                expenseCategories: {
+                    Food: 5123,
+                    Rent: 7236,
+                    Entertainment: 2978,
+                    Transport: 3847,
+                    Miscellaneous: 2950,
+                },
+                investmentCategories: {
+                    MutualFunds: 1847,
+                    Stocks: 1231,
+                    Gold: 671,
+                    FDs: 507,
+                },
+                groupSplits: {
+                    Travel: 400,
+                    Food: 300,
+                    Entertainment: 250,
+                    Miscellaneous: 200,
+                },
             },
-            investmentCategories: {
-              MutualFunds: 1847,
-              Stocks: 1231,
-              Gold: 671,
-              FDs: 507,
+            filterData: {
+                totalIncome: 31268,
+                totalExpenses: 19134,
+                totalSavings: 7506,
+                totalInvestments: 3528,
+                spendingEfficiencyScore: 77.8,
+                investmentGrowth: 5.46,
+                groupContributions: 1432,
+                expenseCategories: {
+                    Food: 4764,
+                    Rent: 6795,
+                    Entertainment: 2873,
+                    Transport: 3782,
+                    Miscellaneous: 2920,
+                },
+                investmentCategories: {
+                    MutualFunds: 1576,
+                    Stocks: 1128,
+                    Gold: 634,
+                    FDs: 390,
+                },
+                groupSplits: {
+                    Travel: 350,
+                    Food: 250,
+                    Entertainment: 200,
+                    Miscellaneous: 150,
+                }
             },
-          },
-          filterData: {
-            totalIncome: 31268,
-            totalExpenses: 19134,
-            totalSavings: 7506,
-            totalInvestments: 3528,
-            spendingEfficiencyScore: 77.8,
-            investmentGrowth: 5.46,
-            groupContributions: 1432,
-            expenseCategories: {
-              Food: 4764,
-              Rent: 6795,
-              Entertainment: 2873,
-              Transport: 3782,
-              Miscellaneous: 2920,
-            },
-            investmentCategories: {
-              MutualFunds: 1576,
-              Stocks: 1128,
-              Gold: 634,
-              FDs: 390,
-            },
-          },
         },
         lastmonth: {
-          label: "Last Month",
-          performanceData: {
-            totalIncome: 30278,
-            totalExpenses: 18436,
-            totalSavings: 8976,
-            totalInvestments: 4812,
-            spendingEfficiencyScore: 82.5,
-            investmentGrowth: 7.08,
-            groupContributions: 1321,
-            expenseCategories: {
-              Food: 5934,
-              Rent: 6987,
-              Entertainment: 2045,
-              Transport: 2176,
-              Miscellaneous: 1294,
+            label: "Last Month",
+            performanceData: {
+                totalIncome: 30278,
+                totalExpenses: 18436,
+                totalSavings: 8976,
+                totalInvestments: 4812,
+                spendingEfficiencyScore: 82.5,
+                investmentGrowth: 7.08,
+                groupContributions: 1321,
+                expenseCategories: {
+                    Food: 5934,
+                    Rent: 6987,
+                    Entertainment: 2045,
+                    Transport: 2176,
+                    Miscellaneous: 1294,
+                },
+                investmentCategories: {
+                    MutualFunds: 1978,
+                    Stocks: 1476,
+                    Gold: 987,
+                    FDs: 471,
+                },
+                groupSplits: {
+                    Travel: 450,
+                    Food: 350,
+                    Entertainment: 250,
+                    Miscellaneous: 200,
+                }
             },
-            investmentCategories: {
-              MutualFunds: 1978,
-              Stocks: 1476,
-              Gold: 987,
-              FDs: 471,
+            filterData: {
+                totalIncome: 29354,
+                totalExpenses: 17281,
+                totalSavings: 8528,
+                totalInvestments: 4545,
+                spendingEfficiencyScore: 79.2,
+                investmentGrowth: 6.47,
+                groupContributions: 1218,
+                expenseCategories: {
+                    Food: 5762,
+                    Rent: 6754,
+                    Entertainment: 1832,
+                    Transport: 1793,
+                    Miscellaneous: 1140,
+                },
+                investmentCategories: {
+                    MutualFunds: 1753,
+                    Stocks: 1423,
+                    Gold: 923,
+                    FDs: 446,
+                },
+                groupSplits: {
+                    Travel: 400,
+                    Food: 300,
+                    Entertainment: 200,
+                    Miscellaneous: 150,
+                }
             },
-          },
-          filterData: {
-            totalIncome: 29354,
-            totalExpenses: 17281,
-            totalSavings: 8528,
-            totalInvestments: 4545,
-            spendingEfficiencyScore: 79.2,
-            investmentGrowth: 6.47,
-            groupContributions: 1218,
-            expenseCategories: {
-              Food: 5762,
-              Rent: 6754,
-              Entertainment: 1832,
-              Transport: 1793,
-              Miscellaneous: 1140,
-            },
-            investmentCategories: {
-              MutualFunds: 1753,
-              Stocks: 1423,
-              Gold: 923,
-              FDs: 446,
-            },
-          },
         },
         thisfinancialyear: {
-          label: "Current Financial Year",
-          performanceData: {
-            totalIncome: 178923,
-            totalExpenses: 109875,
-            totalSavings: 45678,
-            totalInvestments: 25370,
-            spendingEfficiencyScore: 88.2,
-            investmentGrowth: 14.3,
-            groupContributions: 7234,
-            expenseCategories: {
-              Food: 24876,
-              Rent: 32178,
-              Entertainment: 14287,
-              Transport: 17954,
-              Miscellaneous: 20580,
+            label: "Current Financial Year",
+            performanceData: {
+                totalIncome: 178923,
+                totalExpenses: 109875,
+                totalSavings: 45678,
+                totalInvestments: 25370,
+                spendingEfficiencyScore: 88.2,
+                investmentGrowth: 14.3,
+                groupContributions: 7234,
+                expenseCategories: {
+                    Food: 24876,
+                    Rent: 32178,
+                    Entertainment: 14287,
+                    Transport: 17954,
+                    Miscellaneous: 20580,
+                },
+                investmentCategories: {
+                    MutualFunds: 9278,
+                    Stocks: 8092,
+                    Gold: 5215,
+                    FDs: 2785,
+                },
+                groupSplits: {
+                    Travel: 500,
+                    Food: 400,
+                    Entertainment: 300,
+                    Miscellaneous: 250,
+                }
             },
-            investmentCategories: {
-              MutualFunds: 9278,
-              Stocks: 8092,
-              Gold: 5215,
-              FDs: 2785,
+            filterData: {
+                totalIncome: 171538,
+                totalExpenses: 105234,
+                totalSavings: 42156,
+                totalInvestments: 22148,
+                spendingEfficiencyScore: 85.4,
+                investmentGrowth: 13.2,
+                groupContributions: 6487,
+                expenseCategories: {
+                    Food: 22945,
+                    Rent: 30125,
+                    Entertainment: 12874,
+                    Transport: 15982,
+                    Miscellaneous: 23308,
+                },
+                investmentCategories: {
+                    MutualFunds: 8457,
+                    Stocks: 7486,
+                    Gold: 4328,
+                    FDs: 2677,
+                },
+                groupSplits: {
+                    Travel: 450,
+                    Food: 350,
+                    Entertainment: 250,
+                    Miscellaneous: 200,
+                }
             },
-          },
-          filterData: {
-            totalIncome: 171538,
-            totalExpenses: 105234,
-            totalSavings: 42156,
-            totalInvestments: 22148,
-            spendingEfficiencyScore: 85.4,
-            investmentGrowth: 13.2,
-            groupContributions: 6487,
-            expenseCategories: {
-              Food: 22945,
-              Rent: 30125,
-              Entertainment: 12874,
-              Transport: 15982,
-              Miscellaneous: 23308,
-            },
-            investmentCategories: {
-              MutualFunds: 8457,
-              Stocks: 7486,
-              Gold: 4328,
-              FDs: 2677,
-            },
-          },
         },
         lastfinancialyear: {
-          label: "Last Financial Year",
-          performanceData: {
-            totalIncome: 162587,
-            totalExpenses: 102345,
-            totalSavings: 39876,
-            totalInvestments: 21366,
-            spendingEfficiencyScore: 86.5,
-            investmentGrowth: 12.47,
-            groupContributions: 5976,
-            expenseCategories: {
-              Food: 23854,
-              Rent: 30124,
-              Entertainment: 13256,
-              Transport: 16987,
-              Miscellaneous: 18124,
+            label: "Last Financial Year",
+            performanceData: {
+                totalIncome: 162587,
+                totalExpenses: 102345,
+                totalSavings: 39876,
+                totalInvestments: 21366,
+                spendingEfficiencyScore: 86.5,
+                investmentGrowth: 12.47,
+                groupContributions: 5976,
+                expenseCategories: {
+                    Food: 23854,
+                    Rent: 30124,
+                    Entertainment: 13256,
+                    Transport: 16987,
+                    Miscellaneous: 18124,
+                },
+                investmentCategories: {
+                    MutualFunds: 7985,
+                    Stocks: 6243,
+                    Gold: 4128,
+                    FDs: 3010,
+                },
+                groupSplits: {
+                    Travel: 600,
+                    Food: 500,
+                    Entertainment: 400,
+                    Miscellaneous: 300,
+                }
             },
-            investmentCategories: {
-              MutualFunds: 7985,
-              Stocks: 6243,
-              Gold: 4128,
-              FDs: 3010,
+            filterData: {
+                totalIncome: 154987,
+                totalExpenses: 94532,
+                totalSavings: 39875,
+                totalInvestments: 20580,
+                spendingEfficiencyScore: 83.6,
+                investmentGrowth: 11.47,
+                groupContributions: 5832,
+                expenseCategories: {
+                    Food: 22156,
+                    Rent: 28932,
+                    Entertainment: 11987,
+                    Transport: 15643,
+                    Miscellaneous: 15814,
+                },
+                investmentCategories: {
+                    MutualFunds: 7632,
+                    Stocks: 6354,
+                    Gold: 4267,
+                    FDs: 2327,
+                },
+                groupSplits: {
+                    Travel: 550,
+                    Food: 450,
+                    Entertainment: 350,
+                    Miscellaneous: 250,
+                }
             },
-          },
-          filterData: {
-            totalIncome: 154987,
-            totalExpenses: 94532,
-            totalSavings: 39875,
-            totalInvestments: 20580,
-            spendingEfficiencyScore: 83.6,
-            investmentGrowth: 11.47,
-            groupContributions: 5832,
-            expenseCategories: {
-              Food: 22156,
-              Rent: 28932,
-              Entertainment: 11987,
-              Transport: 15643,
-              Miscellaneous: 15814,
-            },
-            investmentCategories: {
-              MutualFunds: 7632,
-              Stocks: 6354,
-              Gold: 4267,
-              FDs: 2327,
-            },
-          },
         },
-      };
+    };
 
     const dataForLineChart = {
         '2022-2023': {
@@ -576,6 +667,34 @@ const FamilyDashboard = () => {
             // Handle investment distribution data
             const totalInvestments = performanceData.totalInvestments || 0;
             const investmentCategories = performanceData.investmentCategories || {};
+            const groupSplits = performanceData.groupSplits || {};
+            // console.log("groupSplits", groupSplits);
+            const splitValues = Object.values(groupSplits);
+            const totalSplit = splitValues.reduce((acc, value) => acc + value, 0);
+
+            // console.log("totalSplit", totalSplit);
+
+            if (totalSplit > 0) {
+                const splitChartData = Object.keys(groupSplits).map((category, index) => ({
+                    id: index,
+                    value: Math.ceil((groupSplits[category] / totalSplit) * 100) || 0,
+                    label: category.charAt(0).toUpperCase() + category.slice(1),
+                    color: ["#ff7f50", "#87ceeb", "#32cd32", "#ff69b4", "#ffa500"][index % 5],
+                }));
+                setGroupSplitChartData(splitChartData);
+            } else {
+
+                setGroupSplitChartData([
+                    {
+                        id: 0,
+                        value: 1,
+                        label: "No Data",
+                        color: "#d1d1d1",
+
+                    },
+                ]);
+            }
+
 
             if (totalInvestments === 0) {
                 setInvestmentPieChartData([
@@ -595,6 +714,8 @@ const FamilyDashboard = () => {
                 }));
                 setInvestmentPieChartData(investmentChartData);
             }
+
+
 
         } catch (error) {
             console.error("Error fetching organization user performance data: ", error);
@@ -638,7 +759,7 @@ const FamilyDashboard = () => {
             const response = await dataForLineChart[filterPerformanceYear];
             const data = response.data;
 
-            console.log("Data = ", data)
+            // console.log("Data = ", data)
 
             let userPerformanceArray = data;
 
@@ -680,7 +801,7 @@ const FamilyDashboard = () => {
     const containerRef = useRef(null);
 
     return (
-        <div className="p-4">
+        <div className="p-4 overflow-x-hidden">
             {/* <div className="bg-white rounded-lg shadow px-6 ">
                 <p className="mb-4">Welcome, {currentUser?.name}!</p>
             </div> */}
@@ -724,7 +845,7 @@ const FamilyDashboard = () => {
                 </div>
 
                 {/* Performance & Charts - LineChart and PieChart in the Same Row */}
-                <div className="flex flex-col lg:flex-row gap-4 mt-6">
+                <div className="flex flex-col lg:flex-row gap-4 mt-6 mb-6">
                     {/* Performance Graph */}
                     <div className="flex-1 p-4 bg-white rounded-2xl border-2">
                         <div className="flex justify-between items-center">
@@ -794,20 +915,32 @@ const FamilyDashboard = () => {
                             data={categoryPieChartData}
                             slotProps={{ legend: { hidden: true } }}
                             className="flex flex-col items-center justify-center"
-                            pieChartClassName="flex items-center justify-center lg:scale-110 mt-2"
+                            pieChartClassName="flex items-center justify-center lg:scale-110 mt-2 ml-28"
                         />
                     </div>
 
                 </div>
                 {/* Pie Chart */}
-                <div className="flex flex-col bg-white rounded-2xl items-center justify-center lg:w-1/3 p-4 border-2">
-                    <p className="text-lg font-medium">Investment Portfolio</p>
-                    <CustomDoughnutChart
-                        data={investmentPieChartData}
-                        slotProps={{ legend: { hidden: true } }}
-                        className="flex flex-col items-center justify-center"
-                        pieChartClassName="flex items-center justify-center lg:scale-110 mt-2"
-                    />
+                <div className='flex flex-col lg:flex-row gap-4 mt-6 mb-6'>
+                    <div className="flex-1 flex flex-col bg-white rounded-2xl items-center justify-center lg:w-1/3 p-4 border-2 ">
+                        <p className="text-lg font-medium">Investment Portfolio</p>
+                        <CustomDoughnutChart
+                            data={investmentPieChartData}
+                            slotProps={{ legend: { hidden: true } }}
+                            className="flex flex-col items-center justify-center"
+                            pieChartClassName="flex items-center justify-center lg:scale-110 mt-2 ml-28"
+                        />
+                    </div>
+
+                    <div className="flex-1 flex flex-col bg-white rounded-2xl items-center justify-center lg:w-1/3 p-4 border-2 ">
+                        <p className="text-lg font-medium">Group Splits</p>
+                        <CustomDoughnutChart
+                            data={groupSplitChartData}
+                            slotProps={{ legend: { hidden: true } }}
+                            className="flex flex-col items-center justify-center"
+                            pieChartClassName="flex items-center justify-center lg:scale-110 mt-2 ml-28"
+                        />
+                    </div>
                 </div>
             </div>
         </div>

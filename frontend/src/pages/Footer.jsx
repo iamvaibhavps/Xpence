@@ -111,14 +111,8 @@ const Footer = () => {
 
         {/* Logo Section */}
         <div className="w-full flex flex-col md:mt-4 lg:mt-0">
-            <div className="flex items-center justify-start">
-                <div className="rounded-full flex items-center justify-center font-bold ml-8 md:ml-16">
-                    <img
-                        // src={logoImg}
-                        alt="logo"
-                        className="w-12 h-12 md:w-40 md:h-40 lg:w-100 lg:h-100"
-                    />
-                </div>
+            <div className="flex items-center justify-center">
+          
                 <div>
                     <p className="font-bold text-[40px] md:text-[150px] lg:text-[250px] pl-4 md:pl-[65px] lg:pl-[100px]">
                         Xpence
@@ -165,7 +159,7 @@ const Footer = () => {
                         </p>
                     </div>
                     <p className="md:text-[17px]">
-                        &copy; Beenium 2025. All rights reserved.
+                        &copy; Xpence 2025. All rights reserved.
                     </p>
                 </div>
             </div>

@@ -21,34 +21,19 @@ import Chatbot from "./Chatbot";
 
 import logo from "../assets/beenium_logos/xpencelogo.png";
 
+import expenseImg from "../assets/homepage_images/expense.png";
+import groupImg from "../assets/homepage_images/group.png";
+import transactionImg from "../assets/homepage_images/transaction.png";
+import transactionImg2 from "../assets/homepage_images/transactions.png";
+import dashboardImg from "../assets/homepage_images/dashboard.png";
+
 
 
 export default function HomePage() {
     const currentUser = useSelector((state) => state.user.user);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (currentUser) {
 
-            switch (currentUser.role) {
-                case 'student':
-                    navigate('/student/dashboard');
-                    break;
-                case 'employee':
-                    navigate('/employee/dashboard');
-                    break;
-                case 'family':
-                    navigate('/family/dashboard');
-                    break;
-                case 'srcitizen':
-                    navigate('/senior/dashboard');
-                    break;
-                default:
-
-                    break;
-            }
-        }
-    }, [currentUser, navigate]);
 
     const videoRef = useRef(null);
 
@@ -218,7 +203,7 @@ export default function HomePage() {
                             </ul>
                         </div>
                         <div className="flex-1 flex justify-center">
-                            <img src={assignImg} alt="assign" className="w-[400px] lg:h-[350px] object-cover" />
+                            <img src={expenseImg} alt="assign" className="w-[450px]  object-cover" />
                         </div>
                     </div>
 
@@ -237,7 +222,7 @@ export default function HomePage() {
 
                         {/* Mobile-only image div */}
                         <div className="flex flex-1 justify-center order-3">
-                            <img src={trackImg} alt="track" className="w-[400px] object-cover" />
+                            <img src={transactionImg2} alt="track" className="w-[450px] object-cover" />
                         </div>
                     </div>
 
@@ -254,7 +239,7 @@ export default function HomePage() {
                             </ul>
                         </div>
                         <div className="flex-1 flex justify-center">
-                            <img src={measureImg} alt="measure" className="w-[400px] lg:h-[350px] object-cover" />
+                            <img src={dashboardImg} alt="measure" className="w-[450px]  object-cover" />
                         </div>
                     </div>
                 </div>
@@ -418,10 +403,10 @@ export default function HomePage() {
                         </p>
                     </h1>
                     <div className="flex items-center gap-5 mt-4">
-                        <button className="bg-dark px-5 md:px-10 py-2 md:text-[19px] text-black rounded-full hover:bg-gray-400">
+                        <button className="bg-dark px-5 md:px-10 py-2 md:text-[19px] text-white rounded-full hover:bg-gray-400">
                             <Link to={`${currentUser ? "/" : "/auth/sign-up"}`}>Get started free</Link>
                         </button>
-                        <button className="bg-dark px-5  md:px-10 py-2 md:text-[19px] text-black rounded-full hover:bg-gray-400">
+                        <button className="bg-dark px-5  md:px-10 py-2 md:text-[19px] text-white rounded-full hover:bg-gray-400">
                             <Link to={"/contact-sales"}>Request a demo</Link>
                         </button>
                     </div>
