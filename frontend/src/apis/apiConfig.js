@@ -7,7 +7,7 @@ import {
 import { logout } from "../redux/Slices/userSlice";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://xpence.onrender.com/api",
 });
 
 const rateLimitedEndpoints = new Map();
