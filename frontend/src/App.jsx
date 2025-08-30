@@ -7,7 +7,7 @@ import { EmployeeRoutes } from './routes/EmployeeRoutes';
 import { FamilyRoutes } from './routes/FamilyRoutes';
 import { SeniorRoutes } from './routes/SeniorRoutes';
 import { ToastContainer } from 'react-toastify';
-import HomePage from './pages/Homepage.jsx';
+import HomePage from './pages/HomePage.jsx';
 
 
 const queryClient = new QueryClient();
