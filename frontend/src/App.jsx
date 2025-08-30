@@ -7,14 +7,15 @@ import { EmployeeRoutes } from './routes/EmployeeRoutes';
 import { FamilyRoutes } from './routes/FamilyRoutes';
 import { SeniorRoutes } from './routes/SeniorRoutes';
 import { ToastContainer } from 'react-toastify';
-import Homepage from './pages/Homepage';
+import HomePage from './pages/Homepage';
+
 
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Homepage />,
+        element: <HomePage />,
     },
     AuthRoutes,
     StudentRoutes,
