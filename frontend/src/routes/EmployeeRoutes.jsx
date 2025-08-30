@@ -1,4 +1,4 @@
-import Profile from "../components/profile";
+// import Profile from "../components/profile";
 import EmployeeLayout from "../layouts/EmployeeLayout";
 import EmployeeDashboard from "../pages/Dashboard/EmployeeDashboard";
 import GroupSplit from "../pages/Shared/GroupSplit";
@@ -26,10 +26,10 @@ export const EmployeeRoutes = {
             path: "my-groups",
             element: <MyGroups />,
         },
-        {
-            path: "my-profile",
-            element: <Profile />,
-        },
+        // {
+        //     path: "my-profile",
+        //     element: <Profile />,
+        // },
         {
             path: "group-splits",
             element: <GroupSplit />,

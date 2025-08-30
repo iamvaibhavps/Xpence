@@ -1,4 +1,4 @@
-import Profile from "../components/profile";
+// import Profile from "../components/profile";
 // import Profile from "../components/Profile";
 import StudentLayout from "../layouts/StudentLayout";
 import StudentDashboard from "../pages/Dashboard/StudentDashboard";
@@ -27,10 +27,10 @@ export const StudentRoutes = {
             path: "my-groups",
             element: <MyGroups />,
         },
-        {
-            path: "my-profile",
-            element: <Profile />,
-        },
+        // {
+        //     path: "my-profile",
+        //     element: <Profile />,
+        // },
         {
             path: "group-splits",
             element: <GroupSplit />,

@@ -1,4 +1,4 @@
-import Profile from "../components/profile";
+// import Profile from "../components/profile";
 import FamilyLayout from "../layouts/FamilyLayout";
 import FamilyDashboard from "../pages/Dashboard/FamilyDashboard";
 import GroupSplit from "../pages/Shared/GroupSplit";
@@ -26,10 +26,10 @@ export const FamilyRoutes = {
             path: "my-groups",
             element: <MyGroups />,
         },
-        {
-            path: "my-profile",
-            element: <Profile />,
-        },
+        // {
+        //     path: "my-profile",
+        //     element: <Profile />,
+        // },
         {
             path: "group-splits",
             element: <GroupSplit />,

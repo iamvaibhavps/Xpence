@@ -1,4 +1,4 @@
-import Profile from "../components/profile";
+// import Profile from "../components/Profile.jsx";
 import SeniorCitizenLayout from "../layouts/SeniorCitizenLayout";
 import SeniorDashboard from "../pages/Dashboard/SeniorDashboard";
 import GroupSplit from "../pages/Shared/GroupSplit";
@@ -26,10 +26,10 @@ export const SeniorRoutes = {
             path: "my-groups",
             element: <MyGroups />,
         },
-        {
-            path: "my-profile",
-            element: <Profile />,
-        },
+        // {
+        //     path: "my-profile",
+        //     element: <Profile />,
+        // },
         {
             path: "group-splits",
             element: <GroupSplit />,
