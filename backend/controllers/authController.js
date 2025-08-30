@@ -63,6 +63,7 @@ const registerController = async (req, res) => {
       name: "Personal",
       members: [newUser._id],
       description: "Personal group for individual transactions",
+      createdBy: newUser._id
     });
 
     await group.save({ session });
